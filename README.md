@@ -1,4 +1,4 @@
-Agora is the alpha name for the Cryptocracy application.
+Agora is the beta name for the Cryptocracy application.
 
 Slack: https://cryptocracy.slack.com
 
