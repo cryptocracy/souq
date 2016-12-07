@@ -16,6 +16,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.jsproj
+*.sln
 
 # =========================
 # Operating System Files
