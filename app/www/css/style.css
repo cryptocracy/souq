@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+.qrcode {
+   width: 80px; /* I took the width from your post and placed it in css */
+   height: 80px;
+   align-content: center;
+}
+
+/* This will style any <img> element in .parent div */
+.qrcode img {
+   height: 100%;
+   width: 100%;
+}

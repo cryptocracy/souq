@@ -1,0 +1,36 @@
+<ion-view view-title="Blockchain" class="">
+  <ion-nav-buttons side="right">
+    <button class="button icon button-clear ion-gear-a" ng-click="modal.show()"></button>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+
+  </ion-content>
+    
+    <script id="templates/modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar class="bar bar-header bar-royal">
+          <h1 class="title">Settings</h1>
+          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Host/IP</span>
+              <input ng-model="newConfig.ip" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Port</span>
+              <input ng-model="newConfig.port" type="number">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Secret</span>
+              <input ng-model="newConfig.secret" type="password">
+            </label>
+            <button class="button button-full button-royal" ng-click="saveBlockchain(newConfig)">Save</button>
+          </div>
+        </ion-content>
+      </ion-modal-view>
+    </script>
+    
+
+</ion-view>
