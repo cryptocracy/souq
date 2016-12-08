@@ -1,7 +1,7 @@
-angular.module('starter.blockchain', [])
+angular.module('starter.account', [])
 
-.controller('BlockchainCtrl', function ($scope, $ionicModal) {
-    $scope.contacts = [
+.controller('AccountCtrl', function ($scope, $ionicModal) {
+    $scope.contacts = [ //crap modal place holder for modal use
       { name: 'Gordon Freeman' },
       { name: 'Barney Calhoun' },
       { name: 'Lamarr the Headcrab' },
@@ -16,5 +16,5 @@ angular.module('starter.blockchain', [])
     $scope.createContact = function (u) {
         $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
         $scope.modal.hide();
-    };
+    }; //end of crap place holder
 });
