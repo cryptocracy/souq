@@ -10,7 +10,7 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
-        <img src="https://blockchain.info/qr?data={{project.address}}">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{project.address}}">
         <h2>{{project.title}}</h2>
         <p>{{project.category}} : {{project.goal}} (BTC)</p>
         <i class="icon ion-chevron-right icon-accessory"></i>

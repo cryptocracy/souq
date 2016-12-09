@@ -1,8 +1,23 @@
 <ion-view view-title="Account" class="">
   <ion-nav-buttons side="right">
-    <button class="button icon button-clear ion-gear-a" ng-click="modal.show()"></button>
+    <button class="button icon button-clear ion-cube" ng-click="modal.show()"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
+  <div class="card">
+    <div class="item item-text-wrap">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{deposit.address}}">
+    </div>
+  </div>
+  <div class="card">
+    <div class="item item-text-wrap">
+       Deposit: {{deposit.address}}
+    </div>
+  </div>
+  <div class="card">
+    <div class="item item-text-wrap">
+       Balance: {{balance}} (BTC)
+    </div>
+  </div>
 
   </ion-content>
 

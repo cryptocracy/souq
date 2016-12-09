@@ -65,7 +65,7 @@ angular.module('starter.services', [])
     address: '1PW6ySd7bzHYsWDB4nRz4yvf3PtBZX7vY6',
     goal: '5.55',
     balance: '0',
-    title: 'free_dental_exams_for_community_for_month',
+    title: 'dental_exams_for_community_for_month',
     category: 'HealthCare',
     info: 'Free Dental Exams for community for month',
     url: '',

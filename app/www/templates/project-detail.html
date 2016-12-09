@@ -9,7 +9,7 @@
             <a href="bitcoin:{{project.address}}" class="button button-outline button-royal item-icon-left icon ion-social-bitcoin"></a>
         </div>
         <div class="item item-avatar">
-        <img src="https://blockchain.info/qr?data={{project.address}}" ng-click="modal.show()">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{project.address}}" ng-click="modal.show()">
         <h2>{{project.address}}</h2>
         <p>{{project.category}} : {{project.balance}} / {{project.goal}} (BTC)</p>
         </div>
@@ -29,7 +29,7 @@
             </ion-header-bar>
             <ion-content class="padding">
                 <div class="list">
-                    <img src="https://blockchain.info/qr?data={{project.address}}" style="height:200px">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{project.address}}" style="height:200px">
                     <h6>{{project.address}}</h6>
                 </div>
 
