@@ -6,8 +6,14 @@ Kanban: https://tree.taiga.io/project/cryptocracy-beta-dev-cycle/
 
 Here is the short term process: Use Kanban Link above to cordinate 
 
-Here is the long term process once fully developed
+Application Setup Guide
 
- 1. Install Mobile App and point at preferred nodes (this app)
- 2. Install Node-Red Server with Redis, Blockstack, & Custom Flows (to point this app at)
- 3. Use as desired
+ 1. Mobile Setup - Install from Store  (this repo is for source dev) [this will connect to your server]
+ 2. Server Requirements: 
+ [Node-Red](http://nodered.org/) 
+ [Redis](https://redis.io/topics/quickstart/)
+ [Blockstack](https://blockstack.org/docs)
+ [Import Flows]()
+ [Configure Flows]()
+ 3. Point Mobile App at Server
+ 4. Use as Needed
