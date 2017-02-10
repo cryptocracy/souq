@@ -1,11 +1,14 @@
 <ion-view view-title="Account" class="">
+  <ion-nav-buttons side="left">
+        <button class="button icon button-clear ion-location header-icon" ng-click="openModal(1)"></button>
+    </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button class="button icon button-clear ion-cube" ng-click="modal.show()"></button>
+    <button class="button icon button-clear ion-settings header-icon" ng-click="openModal(2)"></button>
   </ion-nav-buttons>
   <ion-content class="padding">
   <div class="card">
     <div class="item item-text-wrap">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{deposit.address}}">
+      <qrcode data="{{deposit.address}}" size="200"></qrcode>
     </div>
   </div>
   <div class="card">
@@ -15,37 +18,13 @@
   </div>
   <div class="card">
     <div class="item item-text-wrap">
-       Balance: {{balance}} (BTC)
+       Balance: {{balance.total_balance.bitcoin}} (BTC)
     </div>
   </div>
+  <!-- <button class="button button-block button-assertive" ng-show="!userAuth.isAuthenticate()" ng-click="logout()">
+    Sign Out
+  </button> -->
 
-  </ion-content>
-
-    <script id="templates/modal.html" type="text/ng-template">
-      <ion-modal-view>
-        <ion-header-bar class="bar bar-header bar-royal">
-          <h1 class="title">Server Settings</h1>
-          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
-        </ion-header-bar>
-        <ion-content class="padding">
-          <div class="list">
-            <label class="item item-input">
-              <span class="input-label">Host/IP</span>
-              <input ng-model="newConfig.ip" type="text">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Port</span>
-              <input ng-model="newConfig.port" type="number">
-            </label>
-            <label class="item item-input">
-              <span class="input-label">Secret</span>
-              <input ng-model="newConfig.secret" type="password">
-            </label>
-            <button class="button button-full button-royal" ng-click="saveBlockchain(newConfig)">Save</button>
-          </div>
-        </ion-content>
-      </ion-modal-view>
-    </script>
-
+  </ion-content>  
 
 </ion-view>

@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+agora
 
 .factory('Projects', function() {
   // Might use a resource here that returns a JSON array
@@ -92,4 +92,91 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+
+
+// Service for user Authentication and user logout
+
+.factory('userAuth', function($state){
+
+    return{
+        isAuthenticate: function(){ // checking login condition
+            var auth =  JSON.parse(localStorage.getItem('userLogin'));  
+            if(auth == "true"){
+              auth = true;
+              return auth;
+            }
+            else{
+              auth = false;
+              return auth;
+            }
+            // return "kamran";          
+        },
+        userLogout: function(){ // logging out user
+            localStorage.setItem('userLogin', JSON.stringify(false));
+            $state.go('user.signin');
+        }
+    };
+
+})
+
+.factory('errorPopup', function($ionicPopup, $state){
+    return{
+        signinError: function(){
+            $ionicPopup.alert({
+            title: 'Login Error!',
+            template: 'User or Password is Invalid!!',
+            buttons: [{
+              text:'OK',
+              onTap: function(e) {
+                // $scope.modal.hide();
+              }
+            }]
+          });
+        },
+        emptyField: function(){
+            $ionicPopup.alert({
+            title: 'Empty Field!',
+            template: 'Fill Out All Fields!',
+            buttons: [{
+              text:'OK',
+              onTap: function(e) {
+                // $scope.modal.hide();
+              }
+            }]
+          });
+        },
+        passwordMatch: function(){
+            $ionicPopup.alert({
+            title: 'Password Error!',
+            template: 'Password not match!',
+            buttons: [{
+              text:'OK',
+              onTap: function(e) {
+                // $scope.modal.hide();
+              }
+            }]
+          });
+        },
+        passwordMatchSuccess: function(){
+            $ionicPopup.alert({
+            title: 'Successful',
+            template: 'Successfully Sign Up!',
+            buttons: [{
+              text:'Get Started',
+              onTap: function(e) {
+                // $scope.modal.hide();
+                $state.go('tab.projects');
+              }
+            }]
+          });
+        }
+
+
+
+    };
+})
+
+
+;

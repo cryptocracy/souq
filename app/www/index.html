@@ -7,17 +7,27 @@
     <link rel="manifest" href="manifest.json">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="lib/ionic-toast/src/ionic-toast.css" rel="stylesheet"> 
+    <!-- path to ionic/angularjs js -->
+    
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
+    <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
     <script src="js/account.js"></script>
+    <script src="js/signin.js"></script>
+    <script type="text/javascript" src="js/aes.js"></script>
+    <script type="text/javascript" src="lib/crypto-js/crypto-js.js"></script>
+    <script type="text/javascript" src="js/mdo-angular-cryptography.js"></script>
+    <script type="text/javascript" src="js/qrcode.js"></script>
+    <script type="text/javascript" src="js/qrcodeLibrary.js"></script>
   </head>
   <body ng-app="starter">
 
-    <ion-nav-bar class="bar-royal">
+    <ion-nav-bar class="header">
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>

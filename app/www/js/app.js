@@ -5,9 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.account'])
+ var agora = angular.module('starter', ['ionic','mdo-angular-cryptography', 'monospaced.qrcode'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $state,$timeout, userAuth) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,11 +20,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }
+    }    
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $cryptoProvider) {
+
+  $cryptoProvider.setCryptographyKey('ABCD123');
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -37,13 +40,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+    .state('user', {
+    url: '/user',
+    abstract: true,
+    templateUrl: 'templates/user.html'
+  })
 
   // Each tab has its own nav history stack:
+
+  .state('user.signin', {
+    url: '/signin',
+    views: {
+      'user-signin': {
+        templateUrl: 'templates/signin.html',
+        controller: 'SigninCtrl'
+      }
+    }
+  })
+
+  .state('user.signup', {
+    url: '/signup',
+    views: {
+      'user-signin': {
+        templateUrl: 'templates/signup.html',
+        controller: 'SigninCtrl'
+      }
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
     views: {
       'tab-account': {
+
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
       }
@@ -53,7 +82,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.projects', {
       url: '/projects',
       views: {
-        'tab-projects': {
+        'tab-projects': {          
           templateUrl: 'templates/tab-projects.html',
           controller: 'ProjectsCtrl'
         }
@@ -80,6 +109,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/projects');
+  $urlRouterProvider.otherwise('/user/signin');
 
 });

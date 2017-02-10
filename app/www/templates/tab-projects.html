@@ -1,16 +1,16 @@
 <ion-view view-title="Projects">
     <ion-nav-buttons side="left">
-        <button class="button icon button-clear ion-ios-plus-outline" ng-click="modal.show()"></button>
+        <button class="button icon button-clear ion-ios-plus-outline header-icon" ng-click="modal.show()"></button>
     </ion-nav-buttons>
   <ion-nav-buttons side="right">
-      <button class="button icon button-clear ion-android-list" ng-click="filterProjects()">
+      <button class="button icon button-clear ion-android-list header-icon" ng-click="filterProjects()">
       </button>
    </ion-nav-buttons>
   <ion-content class="has-header padding">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{project.address}}">
+        <qrcode data="{{project.address}}" size="50"></qrcode>
         <h2>{{project.title}}</h2>
         <p>{{project.category}} : {{project.goal}} (BTC)</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
@@ -25,9 +25,9 @@
 
     <script id="templates/modal.html" type="text/ng-template">
         <ion-modal-view>
-            <ion-header-bar class="bar bar-header bar-royal">
+            <ion-header-bar class="header">
                 <h1 class="title">New</h1>
-                <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+                <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
             </ion-header-bar>
             <ion-content class="padding">
                 <div class="list">
@@ -74,7 +74,7 @@
                         <span class="input-label">More Info</span>
                         <input ng-model="newProject.info" type="text">
                     </label>
-                    <button class="button button-full button-royal" ng-click="saveProject(newProject)">Save</button>
+                    <button class="button button-full" ng-click="saveProject(newProject)">Save</button>
                 </div>
             </ion-content>
         </ion-modal-view>

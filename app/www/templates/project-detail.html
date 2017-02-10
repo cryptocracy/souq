@@ -2,14 +2,17 @@
   <ion-content class="padding">
     <div class="list card">
         <div class="button-bar">
-            <a href="#" class="button button-outline button-royal item-icon-left icon ion-map"></a>
-            <a href="{{project.url}}" class="button button-outline button-royal item-icon-left icon ion-link"></a>
-            <a href="tel:{{project.phone}}" class="button button-outline button-royal item-icon-left icon ion-android-call"></a>
-            <a href="mailto:{{project.email}}" class="button button-outline button-royal item-icon-left icon ion-email"></a>
-            <a href="bitcoin:{{project.address}}" class="button button-outline button-royal item-icon-left icon ion-social-bitcoin"></a>
+            <a href="#" class="button button-outline item-icon-left icon ion-map button-bar"></a>
+            <a href="{{project.url}}" class="button button-outline item-icon-left icon ion-link button-bar"></a>
+            <a href="tel:{{project.phone}}" class="button button-outline item-icon-left icon ion-android-call button-bar"></a>
+            <a href="mailto:{{project.email}}" class="button button-outline item-icon-left icon ion-email button-bar"></a>
+            <a href="bitcoin:{{project.address}}" class="button button-outline item-icon-left icon ion-social-bitcoin button-bar"></a>
         </div>
         <div class="item item-avatar">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{project.address}}" ng-click="modal.show()">
+        <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{project.address}}" ng-click="modal.show()"> -->
+
+        <qrcode data="{{project.address}}" size="50"></qrcode>
+
         <h2>{{project.address}}</h2>
         <p>{{project.category}} : {{project.balance}} / {{project.goal}} (BTC)</p>
         </div>
@@ -18,6 +21,9 @@
         {{project.info}}
         <p>Expire Block : {{project.expire}}</p>
         </div>
+    </div>
+    <div style="margin-top:40px">
+        <a class="button block" class="button">Related To ...</a>
     </div>
   </ion-content>
 
