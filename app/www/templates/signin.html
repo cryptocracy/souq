@@ -1,0 +1,27 @@
+<ion-view view-title="Unlock">
+
+  	<ion-content class="has-header padding">
+  		<div class="row">
+  			<div class="col">&nbsp;</div>
+  			<div class="col col-50"><img src="img/logo.svg"></div>
+  			<div class="col">&nbsp;</div>
+  		</div>
+    	<div class="list">
+		  	<label class="item item-input">
+			    <span class="input-label">Username</span>
+			    <input type="text" ng-model="user.name">
+		  	</label>
+		  	<label class="item item-input">
+			    <span class="input-label">Password</span>
+			    <input type="password" ng-model="user.pass">
+		  	</label>
+		</div>
+		<div style="margin-top:40px">
+			<a class="button block icon-right ion-log-in" class="button" ng-click="signin(user)">Unlock</a>
+		</div>
+		<div ng-if="show" align="center" style="margin-top:20px" ui-sref="user.signup">
+			<p>Don't have lock? <span style="color: #43c0a2">Create Lock here</span></p>
+		</div>
+	</ion-content>
+
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="Signup">
+
+  	<ion-content class="has-header padding">
+  		
+    	<div class="list">		  			  	
+		  	<label class="item item-input">
+			    <span class="input-label">Username</span>
+			    <input type="text" ng-model="user.uname">
+		  	</label>
+		  	<label class="item item-input">
+			    <span class="input-label">Password</span>
+			    <input type="password" ng-model="user.pass">
+		  	</label>
+		  	<label class="item item-input">
+			    <span class="input-label">Confirm Password</span>
+			    <input type="password" ng-model="user.confirmPass">
+		  	</label>
+		</div>
+		<div style="margin-top:40px">
+			<a class="button block icon-right ion-log-in" class="button" ng-click="signup(user)">Create Lock</a>
+		</div>
+		<div ng-if="show" align="center" style="margin-top:20px" ui-sref="user.signin">
+			<p>Already got a lock? <span style="color: #43c0a2">Unlock here</span></p>
+		</div>
+	</ion-content>
+
+</ion-view>

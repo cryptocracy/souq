@@ -1,0 +1,61 @@
+/* Empty. Add your own CSS if you like */
+.qrcode {
+    align-content: center;
+    float: left;
+    margin: 0px 10px 0 0;
+}
+
+/* This will style any <img> element in .parent div */
+.qrcode img {
+   height: 100%;
+   width: 100%;
+}
+
+img{
+	height: 100%;
+	width: 100%
+}
+
+.item-complex.item-icon-right .item-content {
+    padding-left: 20px;
+}
+
+.item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
+    padding-left: 20px;
+    min-height: 72px;
+}
+
+.header {
+    border-color: #43c0a2;
+    background-color: #43c0a2;
+    color: #fff !important;
+}
+
+.button {
+    border-color: #43c0a2 !important;
+    background-color: #43c0a2;
+    color: #fff;
+}
+
+.tabIcon {
+    color: #43c0a2;
+}
+
+.button-bar {
+    border-color: #43c0a2 !important;
+    background-color: transparent;
+    color: #43c0a2 !important;
+}
+
+.header-icon {
+    color: white !important;
+}
+
+h1 {
+    color: white;
+}
+
+.toggle.toggle-calm input:checked + .track {
+    border-color: #43c0a2 !important;
+    background-color: #43c0a2 !important;
+}

@@ -1,0 +1,82 @@
+<ion-view view-title="Projects">
+    <ion-nav-buttons side="left">
+        <button class="button icon button-clear ion-ios-plus-outline header-icon" ng-click="modal.show()"></button>
+    </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+      <button class="button icon button-clear ion-android-list header-icon" ng-click="filterProjects()">
+      </button>
+   </ion-nav-buttons>
+  <ion-content class="has-header padding">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
+        <qrcode data="{{project.address}}" size="50"></qrcode>
+        <h2>{{project.title}}</h2>
+        <p>{{project.category}} : {{project.goal}} (BTC)</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(project)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+
+    <script id="templates/modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="header">
+                <h1 class="title">New</h1>
+                <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label">Title</span>
+                        <input ng-model="newProject.title" type="text">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Amount(BTC)</span>
+                        <input ng-model="newProject.goal" type="number" step="0.001">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Address(BTC)</span>
+                        <input ng-model="newProject.address" type="text">
+                    </label>
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Category
+                        </div>
+                        <select ng-model="newProject.category">
+                            <option>Agricultural</option>
+                            <option>Commercial</option>
+                            <option>Educational</option>
+                            <option>Financial</option>
+                            <option>HealthCare</option>
+                            <option>Infrastructural</option>
+                            <option>Universal</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">URL</span>
+                        <input ng-model="newProject.url" type="url">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Phone</span>
+                        <input ng-model="newProject.phone"type="tel">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Email</span>
+                        <input ng-model="newProject.email" type="email">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">More Info</span>
+                        <input ng-model="newProject.info" type="text">
+                    </label>
+                    <button class="button button-full" ng-click="saveProject(newProject)">Save</button>
+                </div>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+</ion-view>
