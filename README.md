@@ -6,11 +6,11 @@ Setup Guide
  
  2. Server Setup Prerequisites: 
  
+ [Blockstack](https://blockstack.org/docs)
+ 
  [Node-Red](http://nodered.org/) 
  
  [Redis](https://redis.io/topics/quickstart/)
- 
- [Blockstack](https://blockstack.org/docs)
  
  [Import Flows](https://github.com/cryptocracy/flows)
  
