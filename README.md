@@ -1,6 +1,6 @@
 Souq: Decentralized Project Funding
 
-Setup Guide
+User Setup Guide
 
  1. Install Souq - App Store - (this repo is for source dev) [Source Code](https://github.com/cryptocracy/souq) 
  
