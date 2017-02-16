@@ -1,13 +1,21 @@
 Souq: Decentralized Project Funding
 
-Quick Setup Guide
+Setup Guide
 
- 1. Mobile Setup - Install from Store  (this repo is for source dev) [this will connect to your server]
- 2. Server Requirements: 
+ 1. Install Souq - App Store - (this repo is for source dev) [Source Code](https://github.com/cryptocracy/souq) 
+ 
+ 2. Server Setup Prerequisites: 
+ 
  [Node-Red](http://nodered.org/) 
+ 
  [Redis](https://redis.io/topics/quickstart/)
+ 
  [Blockstack](https://blockstack.org/docs)
- [Import Flows]()
- [Configure Flows]()
- 3. Configure Mobile App to Sync with preferred Server
- 4. Use as Needed
+ 
+ [Import Flows](https://github.com/cryptocracy/flows)
+ 
+ [Configure Flows](https://github.com/cryptocracy/flows/wiki/Setup-Guide)
+ 
+ 3. Configure Souq Settings [Setup Guide](https://github.com/cryptocracy/souq/wiki/Setup-Guide)
+ 
+ 4. How to Use [Youtube Videos](https://www.youtube.com/watch?v=mcnTTxa9fEw&list=PLUdFA44fiMvhP7jdUsCfwP0mQNf_3fpKE)
