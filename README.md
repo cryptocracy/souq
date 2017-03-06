@@ -4,7 +4,7 @@ User Setup Guide
 
  1. Install Souq - App Store - (this repo is for source dev) [Source Code](https://github.com/cryptocracy/souq) 
  
- 2. Server Setup Prerequisites: 
+ 2. Preferred Server Prerequisites: 
  
  [Blockstack](https://blockstack.org/docs)
  
