@@ -1,8 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .qrcode {
     align-content: center;
-    float: left;
-    margin: 0px 10px 0 0;
+    margin: 0;
 }
 
 /* This will style any <img> element in .parent div */
@@ -58,4 +57,12 @@ h1 {
 .toggle.toggle-calm input:checked + .track {
     border-color: #43c0a2 !important;
     background-color: #43c0a2 !important;
+}
+
+.item-input{
+    padding: 6px 0 5px 5px;
+}
+
+.input-label {
+    width: 30%;
 }

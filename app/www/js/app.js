@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
- var agora = angular.module('starter', ['ionic','mdo-angular-cryptography', 'monospaced.qrcode'])
+ var souq = angular.module('starter', ['ionic','ngCordova','mdo-angular-cryptography', 'monospaced.qrcode'])
 
 .run(function($ionicPlatform, $rootScope, $state,$timeout, userAuth) {
 
@@ -70,6 +70,7 @@
 
   .state('tab.account', {
     url: '/account',
+    cache:false,
     views: {
       'tab-account': {
 
@@ -81,6 +82,7 @@
 
   .state('tab.projects', {
       url: '/projects',
+      cache:false,
       views: {
         'tab-projects': {          
           templateUrl: 'templates/tab-projects.html',
@@ -90,6 +92,7 @@
     })
     .state('tab.project-detail', {
       url: '/projects/:projectId',
+      cache:false,
       views: {
         'tab-projects': {
           templateUrl: 'templates/project-detail.html',
@@ -100,6 +103,7 @@
 
   .state('tab.new', {
     url: '/new',
+    cache:false,
     views: {
       'tab-new': {
         templateUrl: 'templates/tab-new.html',
@@ -111,4 +115,10 @@
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/user/signin');
 
-});
+})
+
+.filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+}]);

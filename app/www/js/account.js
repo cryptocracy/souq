@@ -1,12 +1,12 @@
-agora
+souq
 
-.controller('AccountCtrl', function ($scope, $ionicModal, $http, $crypto, $ionicPopup, userAuth) {
-
+.controller('AccountCtrl', function ($scope, $ionicModal, $http, $crypto, $ionicPopup, $interval, userAuth, $ionicLoading) {
+    
+    $scope.interval;
     $scope.getDetails = function() {
-      // body...
       $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
-      if ($scope.serverSettings != undefined) 
-      {
+      if ($scope.serverSettings != undefined) {
+        $ionicLoading.show();
         var header = {
           "alg": "HS256",
           "typ": "JWT"
@@ -42,8 +42,9 @@ agora
         token = $crypto.encryptHMA(token, decrypted.password);
         token = $crypto.base64url(token);
         
-        var urlDeposit = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get/deposit?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
-
+        // var urlDeposit = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+        var urlDeposit = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+        console.log(urlDeposit);
         var payload = {
           "method": "get",
           "request": "balance",
@@ -56,33 +57,77 @@ agora
         token = $crypto.encryptHMA(token, decrypted.password);
         token = $crypto.base64url(token);
 
-        var urlBalance = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get/balance?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+        // var urlBalance = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+        var urlBalance = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+        console.log(urlBalance);
 
         $scope.deposit = "";
-        $scope.balance = ""
+        $scope.balance = "";
 
-        $http.get(urlDeposit)
+        $http.get(urlDeposit, {timeout: 10000})
           .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
-            console.log('data sucess');
+            console.log('data success deposit');
             console.log(data);
             $scope.deposit = data;
           })
           .error(function(data, status, headers, config){
             console.log('data error');
+            $ionicLoading.hide();
+            $interval.cancel($scope.interval);
+            $ionicPopup.alert({
+              title: 'Error',
+              template: "Can't Connect, Please Check Settings Or Server and Try Again",
+              buttons: [{
+                text:'OK'
+              }]
+            });
           });
 
-        $http.get(urlBalance)
+        $http.get(urlBalance, {timeout: 10000})
           .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
-            console.log('data sucess');
+            console.log('data sucess balance');
+            console.log(data);
             $scope.balance = data;
+            $ionicLoading.hide();
           })
           .error(function(data, status, headers, config){
             console.log('data error');
+            $interval.cancel($scope.interval);
+            $ionicLoading.hide();
           });
       }
-    }  
+      else {
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'No server settings found!!',
+          template: 'Please setup your server settings'
+        });
 
-    $scope.getDetails();
+        confirmPopup.then(function(res) {
+          if(res) {
+            $ionicModal.fromTemplateUrl('templates/serverSettingsModal.html', {
+              scope: $scope
+            }).then(function (modal) {
+              $scope.modal = modal;
+              $scope.modal.show();
+            });
+          } 
+          else {
+            console.log('You are not sure');
+          }
+        });
+      }
+    }
+    $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
+
+    if ($scope.serverSettings == undefined) {
+      $scope.getDetails();  
+    }
+    else if ($scope.serverSettings != undefined) {
+      $scope.getDetails();
+      $scope.interval = $interval(function () {
+        $scope.getDetails();
+      }, 25000)
+    }
 
     $scope.dataSaveAlert = function(){    
       $ionicPopup.alert({
@@ -115,8 +160,11 @@ agora
 
     $scope.saveServerSettings = function(serverData){
       // var serverSettings = serverData;
-      console.log(serverData);      
-      serverData.serverType = $crypto.encrypt(serverData.serverType.toString());
+      console.log(serverData);   
+      if(serverData.serverType == undefined)   
+        serverData.serverType = $crypto.encrypt("true");
+      else
+        serverData.serverType = $crypto.encrypt(serverData.serverType.toString());
       serverData.host = $crypto.encrypt(serverData.host);
       serverData.port = $crypto.encrypt(serverData.port);
       serverData.password = $crypto.encrypt(serverData.password);      
@@ -163,34 +211,33 @@ agora
             scope: $scope
         }).then(function (modal) {
 
-            $scope.modal = modal;
-            $scope.modal.show();
+          $scope.modal = modal;
+          $scope.modal.show();
 
-            //decyption
-            var decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
-            // if($scope.location.latitude == "" || $scope.location.longitude == ""){
-              encrypted = JSON.parse(localStorage.getItem('serverSettings'));
-              if(encrypted == null)
-                return;
+          //decyption
+          var decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
+          // if($scope.location.latitude == "" || $scope.location.longitude == ""){
+            encrypted = JSON.parse(localStorage.getItem('serverSettings'));
+            if(encrypted == null)
+              return;
 
-              decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
-              if(decrypted.serverType == "true"){
-                decrypted.serverType = true;
-                // console.log("Now true " + decrypted.device);
-              }
-              else{
-                decrypted.serverType = false;
-                // console.log("Now false " + decrypted.device);
-              }
-              decrypted.host  = $crypto.decrypt(encrypted.host);
-              decrypted.port  = $crypto.decrypt(encrypted.port);
-              //decrypted.username  = $crypto.decrypt(encrypted.username);
-              decrypted.password  = $crypto.decrypt(encrypted.password);
-              console.log(decrypted);
-              $scope.serverSettings = decrypted;
-              // console.log($scope.serverSettings);              
-            // }
-
+            decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
+            if(decrypted.serverType == "true"){
+              decrypted.serverType = true;
+              // console.log("Now true " + decrypted.device);
+            }
+            else{
+              decrypted.serverType = false;
+              // console.log("Now false " + decrypted.device);
+            }
+            decrypted.host  = $crypto.decrypt(encrypted.host);
+            decrypted.port  = $crypto.decrypt(encrypted.port);
+            //decrypted.username  = $crypto.decrypt(encrypted.username);
+            decrypted.password  = $crypto.decrypt(encrypted.password);
+            console.log(decrypted);
+            $scope.serverSettings = decrypted;
+            // console.log($scope.serverSettings);              
+          // }
         });          
       }    
     }
@@ -198,5 +245,10 @@ agora
     $scope.logout = function(){
       userAuth.userLogout();
     }
+
+    $scope.$on('$destroy', function() {
+      console.log('destroy');
+      $interval.cancel($scope.interval);
+    });
 
 })

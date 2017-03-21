@@ -1,0 +1,23 @@
+<ion-modal-view>
+        <ion-header-bar class="header">
+          <h1 class="title">Location Settings</h1>
+          <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class="list">
+            <label>
+              <span class="input-label"></span>
+              <ion-toggle ng-model="location.device" toggle-class="toggle-calm">Use Device</ion-toggle>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Latitude</span>
+              <input ng-model="location.latitude" type="text">
+            </label>            
+            <label class="item item-input">
+              <span class="input-label">Longitude</span>
+              <input ng-model="location.longitude" type="text">
+            </label>
+            <button class="button button-full" ng-click="saveLocation(location)">Save</button>
+          </div>
+        </ion-content>
+</ion-modal-view>

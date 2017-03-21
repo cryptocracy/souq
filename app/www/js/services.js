@@ -1,4 +1,4 @@
-agora
+souq
 
 .factory('Projects', function() {
   // Might use a resource here that returns a JSON array
@@ -10,70 +10,70 @@ agora
     goal: '1.99',
     balance: '0',
     title: 'fix_pot_holes_on_1st_st',
-    category: 'PotHole: Maintenance',
-    info: 'Repair both Pot Holes on 1st ST',
+    category: 'Infrastructural',
+    info: 'Here is the details about my project',
     url: 'http://cryptocracy.io/',
     phone: '5416703886',
     email: 'admin@cryptocracy.io',
     latitude: '',
     longitude: '',
-    expire: '454545'
+    expire: '441777'
   }, {
     id: 1,
-    address: 'none',
-    goal: '0',
+    address: '1nybV3p2xE1fVi8aVwxnPpgfqH2KqWGzS',
+    goal: '3.59',
     balance: '0',
-    title: 'found_pot_hole_on_S_1st_st',
-    category: 'PotHole: Alert',
-    info: 'Found a Pot hole on South 1st ST, See URL for additional details',
+    title: '2017_school_supplies_for_4th_graders Obaid',
+    category: 'Educational',
+    info: 'School supplies for the 4th graders',
     url: '',
     phone: '',
     email: '',
     latitude: '',
     longitude: '',
-    expire: '454445'
+    expire: '441856'
   }, {
     id: 2,
-    address: 'none',
-    goal: '0',
+    address: '1C7Pkm2ExNbqwpEui9gQU6UCr8KLJCTTtq',
+    goal: '1.55',
     balance: '0',
-    title: 'found_pot_hole_on_N_1st_st',
-    category: 'PotHole: Alert',
-    info: 'Found a Pot hole on North 1st ST, See URL for additional details',
+    title: 'get_tractor_for_community_farm',
+    category: 'Agricultural',
+    info: 'Get tractor for community farm',
     url: '',
     phone: '',
     email: '',
     latitude: '',
     longitude: '',
-    expire: '454435'
+    expire: '441916'
   }, {
     id: 3,
     address: '1JziA3kXQ8k5JLmdS6vRKZnwvJhRYqEJuE',
-    goal: '1.15',
+    goal: '30.15',
     balance: '0',
-    title: 'fix_pot_hole_on_main_st',
-    category: 'PotHole: Maintenance',
-    info: 'Repair Pot hole on South side of Main ST',
+    title: 'repair_bridge_on_se_1st',
+    category: 'Infrastructural',
+    info: 'Repair bridge on SE 1st',
     url: '',
     phone: '',
     email: '',
     latitude: '',
     longitude: '',
-    expire: '454545'
+    expire: '441955'
   }, {
     id: 4,
-    address: 'none',
-    goal: '0',
+    address: '1PW6ySd7bzHYsWDB4nRz4yvf3PtBZX7vY6',
+    goal: '5.55',
     balance: '0',
-    title: 'found_pot_hole_on_S_Main_st',
-    category: 'PotHole: Alert',
-    info: 'Found a Pot hole on South Side of Main ST, See URL for additional details',
+    title: 'dental_exams_for_community_for_month',
+    category: 'HealthCare',
+    info: 'Free Dental Exams for community for month',
     url: '',
     phone: '',
     email: '',
     latitude: '',
     longitude: '',
-    expire: '454345'
+    expire: '441999'
   }];
 
   return {

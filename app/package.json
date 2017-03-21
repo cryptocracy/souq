@@ -1,7 +1,7 @@
 {
   "name": "Cryptocracy",
-  "version": "1.1.1",
-  "description": "Cryptocracy: Decentralized Project Funding",
+  "version": "1.2.1",
+  "description": "Cryptocracy: Decentralized Project Tagging & Funding",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",

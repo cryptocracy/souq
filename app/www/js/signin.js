@@ -1,4 +1,4 @@
-agora
+souq
 .controller('SigninCtrl', function ($scope, $state, $crypto, userAuth, errorPopup) {
 	console.log("Welcome to SigninCtrl")
 	let tmp = localStorage.getItem('user');

@@ -1,0 +1,31 @@
+<ion-modal-view>
+        <ion-header-bar class="header">
+          <h1 class="title">Server Settings</h1>
+          <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+          <div class= "list">
+            <label>
+              <span class="input-label"></span>
+              <ion-toggle ng-model="serverSettings.serverType" toggle-class="toggle-calm">HTTP(s) vs HTTP</ion-toggle>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Host/IP</span>
+              <input ng-model="serverSettings.host" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Port</span>
+              <input ng-model="serverSettings.port" type="text">
+            </label>
+            <!-- <label class="item item-input">
+              <span class="input-label">Username</span>
+              <input ng-model="serverSettings.username" type="text">
+            </label> -->
+            <label class="item item-input">
+              <span class="input-label">Secret</span>
+              <input ng-model="serverSettings.password" type="password">
+            </label>
+            <button class="button button-full" ng-click="saveServerSettings(serverSettings)">Save</button>
+          </div>
+        </ion-content>
+</ion-modal-view>
