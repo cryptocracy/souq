@@ -1,16 +1,19 @@
 souq
 
 .controller('ProjectsCtrl', function($scope, $state, Projects, $ionicModal, userAuth, $http, $crypto, $ionicPopup, $interval, $ionicLoading, $cordovaCamera) {
+    console.log('ProjectsCtrl')
+    $scope.newProject = {};
 
-  // (function(){
-    // if (userAuth.isAuthenticate()) {
-    $scope.newproject = [ //place holder object to get modal modal  
-      { name: 'Gordon Freeman' },
-      { name: 'Barney Calhoun' },
-      { name: 'Lamarr the Headcrab' },
-    ];
+    function geolocationSuccess(location) {
+      $scope.newProject.latitude = location.coords.latitude;
+      $scope.newProject.longitude = location.coords.longitude;
+    }
 
-    // New Project Modal
+    function geolocationError(err) {
+      console.log(err);
+    }
+
+    navigator.geolocation.getCurrentPosition(geolocationSuccess,geolocationError);
 
     $scope.openProjectModal = function(){
       $ionicModal.fromTemplateUrl('templates/newProjectModal.html', {
@@ -20,7 +23,7 @@ souq
         $scope.id='';
 
         if ($scope.serverSettings != undefined) {
-
+          $ionicLoading.show();
           $scope.id = $scope.makeId(); 
           var header = {
             "alg": "HS256",
@@ -35,7 +38,7 @@ souq
             "id": $scope.id,
             "admin": true
           };
-          console.log(payload);
+          // console.log(payload);
           var stringifiedPayload = $crypto.parseData(payload);
           var encodedPayload = $crypto.base64url(stringifiedPayload);
           
@@ -69,6 +72,7 @@ souq
               console.log(data);
               $scope.warnings = data.warnings;
               $scope.priceData = data;
+              $ionicLoading.hide();
             })
             .error(function(data, status, headers, config){
               console.log('data error urlOwned');
@@ -114,7 +118,7 @@ souq
         var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
 
         for( var i=0; i < 24; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
         console.log("pr01-"+text+".id");
         $scope.id = "pr01-"+ text;
         // $scope.id = "pr01-"+ text +".id";            
@@ -131,194 +135,7 @@ souq
       Projects.remove(project);
     };
    
-
-  // Projects Details function
-
-   $scope.projects = function() {
-      $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
-      if ($scope.serverSettings != undefined) {
-        $ionicLoading.show();
-        var header = {
-          "alg": "HS256",
-          "typ": "JWT"
-        };
-        var stringifiedHeader = $crypto.parseData(header);
-        var encodedHeader = $crypto.base64url(stringifiedHeader);
-
-        var payload = {
-          "method": "get",
-          "request": "owned",
-          "admin": true
-        };
-        var stringifiedPayload = $crypto.parseData(payload);
-        var encodedPayload = $crypto.base64url(stringifiedPayload);
-        
-        let encrypted = JSON.parse(localStorage.getItem('serverSettings'));
-        let decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
-        
-        decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
-          if(decrypted.serverType == "true")
-            decrypted.serverType = 'http';
-          else
-            decrypted.serverType = 'https';
-          
-        decrypted.host  = $crypto.decrypt(encrypted.host);
-        decrypted.port  = $crypto.decrypt(encrypted.port);
-        //decrypted.username  = $crypto.decrypt(encrypted.username);
-        decrypted.password  = $crypto.decrypt(encrypted.password);
-        
-        $scope.serverSettings = decrypted;
-
-        var token = encodedHeader + "." + encodedPayload;
-        token = $crypto.encryptHMA(token, decrypted.password);
-        token = $crypto.base64url(token);
-        
-        // var urlOwned = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
-        var urlOwned = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
-
-        $scope.owned = "";
-
-        $http.get(urlOwned, {timeout: 10000})
-          .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
-            console.log('data sucess urlOwned');
-            console.log(data);
-            $scope.owned = data;
-            $ionicLoading.hide();
-          })
-          .error(function(data, status, headers, config){
-            console.log('data error urlOwned');
-            $ionicLoading.hide();
-            $interval.cancel($scope.interval);
-            $ionicPopup.alert({
-              title: 'Error',
-              template: "Can't Connect, Please Check Settings Or Server and Try Again",
-              buttons: [{
-                text:'OK'
-              }]
-            });
-          });
-      }
-      else {
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'No server settings found!!',
-          template: 'Please setup your server settings'
-        });
-
-        confirmPopup.then(function(res) {
-          if(res) {
-            $ionicModal.fromTemplateUrl('templates/serverSettingsModal.html', {
-              scope: $scope
-            }).then(function (modal) {
-              $scope.modal = modal;
-              $scope.modal.show();
-            });
-          } 
-          else {
-            console.log('You are not sure');
-          }
-        });
-      }
-    }
-
-   $scope.interval;
-    $scope.getDetails = function() {
-      // $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
-      // if ($scope.serverSettings != undefined) {
-      //   $ionicLoading.show();
-      //   var header = {
-      //     "alg": "HS256",
-      //     "typ": "JWT"
-      //   };
-      //   var stringifiedHeader = $crypto.parseData(header);
-      //   var encodedHeader = $crypto.base64url(stringifiedHeader);
-
-      //   var payload = {
-      //     "method": "get",
-      //     "request": "price",
-      //     "id": "pr01-3d279xmacdklazzj2vfyvd90",
-      //     "admin": true
-      //   };
-
-      //   var stringifiedPayload = $crypto.parseData(payload);
-      //   var encodedPayload = $crypto.base64url(stringifiedPayload);
-        
-      //   let encrypted = JSON.parse(localStorage.getItem('serverSettings'));
-      //   let decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
-        
-      //   decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
-      //     if(decrypted.serverType == "true")
-      //       decrypted.serverType = 'http';
-      //     else
-      //       decrypted.serverType = 'https';
-          
-      //   decrypted.host  = $crypto.decrypt(encrypted.host);
-      //   decrypted.port  = $crypto.decrypt(encrypted.port);
-      //   decrypted.password  = $crypto.decrypt(encrypted.password);
-        
-      //   $scope.serverSettings = decrypted;
-
-      //   var token = encodedHeader + "." + encodedPayload;
-      //   token = $crypto.encryptHMA(token, decrypted.password);
-      //   token = $crypto.base64url(token);
-        
-      //   var urlProjects = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
-      //   console.log(urlProjects);
-      //   $scope.project = "";
-
-      //   $http.get(urlProjects, {timeout: 10000})
-      //     .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
-      //       console.log('data success urlProjects');
-      //       console.log(data);
-      //       $scope.project = data;
-      //       $ionicLoading.hide();
-      //     })
-      //     .error(function(data, status, headers, config){
-      //       console.log('data error urlProjects');
-      //       $ionicLoading.hide();
-      //       $interval.cancel($scope.interval);
-      //       $ionicPopup.alert({
-      //         title: 'Error',
-      //         template: "Can't Connect, Please Check Settings Or Server and Try Again",
-      //         buttons: [{
-      //           text:'OK'
-      //         }]
-      //       });
-      //     });
-      // }
-      // else {
-      //   var confirmPopup = $ionicPopup.confirm({
-      //     title: 'No server settings found!!',
-      //     template: 'Please setup your server settings'
-      //   });
-
-      //   confirmPopup.then(function(res) {
-      //     if(res) {
-      //       $ionicModal.fromTemplateUrl('templates/serverSettingsModal.html', {
-      //         scope: $scope
-      //       }).then(function (modal) {
-      //         $scope.modal = modal;
-      //         $scope.modal.show();
-      //       });
-      //     } 
-      //     else {
-      //       console.log('You are not sure');
-      //     }
-      //   });
-      // }
-    }
     $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
-
-    if ($scope.serverSettings == undefined) {
-      $scope.getDetails();  
-    }
-    else if ($scope.serverSettings != undefined) {
-      $scope.getDetails(); 
-      $scope.interval = $interval(function () {
-        $scope.getDetails(); 
-      }, 25000)
-    }
-
-  // Saving Data
 
   $scope.dataSaveAlert = function(){    
       $ionicPopup.alert({
@@ -328,7 +145,7 @@ souq
           text:'OK',
           onTap: function(e) {
             $scope.modal.hide();
-            $scope.getDetails();
+            // $scope.getDetails();
           }
         }]
       });
@@ -359,137 +176,271 @@ souq
       });
   }
 
-
-
   // Function for Creating Projects from posting data
-  $scope.saveProject = function(newProject){      
-          
-      // console.log(newProject);
-      localStorage.setItem('project', JSON.stringify(newProject));
-      
-      // $scope.hideToast();      
-
-      $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
-      if ($scope.serverSettings != undefined) {
-        $ionicLoading.show();
-        var header = {
-          "alg": "HS256",
-          "typ": "JWT"
-        };
-        var stringifiedHeader = $crypto.parseData(header);
-        var encodedHeader = $crypto.base64url(stringifiedHeader);
-        console.log($scope.id);
-        var payload = {
-          "method":"post",
-          "request":"register",
-          "admin":true,
-          "v":"1.0.1",
-          "childof":"",
-          "id":$scope.id,
-          "project":{
-              "type": newProject.type,
-              "category": newProject.category,
-              "title": newProject.title,
-              "detail": newProject.detail
-          },
-          "bitcoin":{
-              "address": newProject.address,
-              "goal": newProject.goal
-          },
-          "coordinates":{
-              "latitude": newProject.latitude,
-              "longitude": newProject.longitude
-          },
-          "image":{
-              // "url": $scope.imgURI
-              "url":"./img/adam.jpg"
-          },
-          "contacts":{
-              "phone": newProject.phone,
-              "email": newProject.email,
-              "website": newProject.website
-          },
-          "children":{
-
-          }
-
-
-
-        };
-        var stringifiedPayload = $crypto.parseData(payload);
-        var encodedPayload = $crypto.base64url(stringifiedPayload);
-        
-        let encrypted = JSON.parse(localStorage.getItem('serverSettings'));
-        let decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
-        
-        decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
-          if(decrypted.serverType == "true")
-            decrypted.serverType = 'http';
-          else
-            decrypted.serverType = 'https';
-          
-        decrypted.host  = $crypto.decrypt(encrypted.host);
-        decrypted.port  = $crypto.decrypt(encrypted.port);
-        //decrypted.username  = $crypto.decrypt(encrypted.username);
-        decrypted.password  = $crypto.decrypt(encrypted.password);
-        
-        $scope.serverSettings = decrypted;
-
-        var token = encodedHeader + "." + encodedPayload;
-        token = $crypto.encryptHMA(token, decrypted.password);
-        token = $crypto.base64url(token);
-        
-        // var urlProjects = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/post?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
-        var urlProjects = decrypted.serverType + "://" + decrypted.host + ':' + decrypted.port + '/post?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
-
-        $scope.project = "";
-        console.log(urlProjects);
-        $http.post(urlProjects)
-        // $http.post(urlProjects, payload)
-          .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
-            // console.log('data sucess');
-            console.log(data);
-            console.log("Project has been Saved");
-            $scope.dataSaveAlert();
-            $scope.project = data;
-            $ionicLoading.hide();
-          })
-          .error(function(data, status, headers, config){
-            console.log('error in posting');
-            $ionicLoading.hide();
-            $interval.cancel($scope.interval);
-            $ionicPopup.alert({
-              title: 'Error',
-              template: "Can't Connect, Please Check Settings Or Server and Try Again",
-              buttons: [{
-                text:'OK'
-              }]
-            });
-          });
-      }
-      else {
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'No server settings found!!',
-          template: 'Please setup your server settings'
-        });
-
-        confirmPopup.then(function(res) {
-          if(res) {
-            $ionicModal.fromTemplateUrl('templates/serverSettingsModal.html', {
-              scope: $scope
-            }).then(function (modal) {
-              $scope.modal = modal;
-              $scope.modal.show();
-            });
-          } 
-          else {
-            console.log('You are not sure');
-          }
-        });
-      }
-      
+  $scope.saveProject = function(){   
+    console.log('ff');  
+    var newProject = $scope.newProject;
+    console.log(newProject)
+    if (newProject == undefined) {
+      $ionicPopup.alert({
+        title: 'Empty Fields',
+        template: "Fields cannot be empty!!",
+        buttons: [{
+          text:'OK'
+        }]
+      });
+      return;
     }
+    localStorage.setItem('project', JSON.stringify(newProject));
+    
+    $scope.serverSettings = JSON.parse(localStorage.getItem('serverSettings'));
+    if ($scope.serverSettings != undefined) {
+      var header = {
+        "alg": "HS256",
+        "typ": "JWT"
+      };
+      var stringifiedHeader = $crypto.parseData(header);
+      var encodedHeader = $crypto.base64url(stringifiedHeader);
+      // console.log(newProject.goal);
+      var payload = {
+        "method":"post",
+        "request":"register",
+        "admin":true,
+        "v":"1.0.1",
+        "childof":"",
+        "id":$scope.id,
+        "project":{
+            "type": newProject.type,
+            "category": newProject.category,
+            "title": newProject.title,
+            "detail": newProject.detail
+        },
+        "bitcoin":{
+            "address": newProject.address,
+            "goal": newProject.goal
+        },
+        "coordinates":{
+            "latitude": newProject.latitude,
+            "longitude": newProject.longitude
+        },
+        "image":{
+            "url": newProject.imgURI
+        },
+        "contacts":{
+            "phone": newProject.phone,
+            "email": newProject.email,
+            "website": newProject.website
+        },
+        "children":{
 
+        }
+      };
+      if (payload.project.type == undefined || payload.project.category == undefined || payload.project.title == undefined || payload.project.detail == undefined || payload.bitcoin.address == undefined || payload.bitcoin.goal == undefined || payload.contacts.email == undefined) {
+        console.log('undefined')
+        $ionicPopup.alert({
+          title: 'Empty Fields',
+          template: "Fields cannot be empty!!",
+          buttons: [{
+            text:'OK'
+          }]
+        });
+        return;
+      }
+      if (payload.project.type == "" || payload.project.category == "" || payload.project.title == "" || payload.project.detail == "" || payload.bitcoin.address == "" || payload.bitcoin.goal == "" || payload.contacts.email == "") {
+        console.log('null')
+        $ionicPopup.alert({
+          title: 'Empty Fields',
+          template: "Fields cannot be empty!!",
+          buttons: [{
+            text:'OK'
+          }]
+        });
+        return;
+      }
+      var x = payload.contacts.email;
+      var atpos = x.indexOf("@");
+      var dotpos = x.lastIndexOf(".");
+      if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+          $ionicPopup.alert({
+          title: 'Wrong Email',
+          template: "Not a valid e-mail address",
+          buttons: [{
+            text:'OK'
+          }]
+        });
+        return;
+      }
+      $ionicLoading.show();
+      var stringifiedPayload = $crypto.parseData(payload);
+      var encodedPayload = $crypto.base64url(stringifiedPayload);
+      
+      let encrypted = JSON.parse(localStorage.getItem('serverSettings'));
+      let decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
+      
+      decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
+        if(decrypted.serverType == "true")
+          decrypted.serverType = 'http';
+        else
+          decrypted.serverType = 'https';
+        
+      decrypted.host  = $crypto.decrypt(encrypted.host);
+      decrypted.port  = $crypto.decrypt(encrypted.port);
+      //decrypted.username  = $crypto.decrypt(encrypted.username);
+      decrypted.password  = $crypto.decrypt(encrypted.password);
+      
+      $scope.serverSettings = decrypted;
+
+      var token = encodedHeader + "." + encodedPayload;
+      token = $crypto.encryptHMA(token, decrypted.password);
+      token = $crypto.base64url(token);
+      
+      // var urlProjects = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/post?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+      var urlProjects = decrypted.serverType + "://" + decrypted.host + ':' + decrypted.port + '/post?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+
+      $scope.project = "";
+      console.log(urlProjects);
+      $http.post(urlProjects)
+      // $http.post(urlProjects, payload)
+        .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
+          // console.log('data sucess');
+          console.log(data);
+          console.log("Project has been Saved");
+          $scope.dataSaveAlert();
+          $scope.project = data;
+          $ionicLoading.hide();
+        })
+        .error(function(data, status, headers, config){
+          console.log('error in posting');
+          $ionicLoading.hide();
+          $interval.cancel($scope.interval);
+          $ionicPopup.alert({
+            title: 'Error',
+            template: "Can't Connect, Please Check Settings Or Server and Try Again",
+            buttons: [{
+              text:'OK'
+            }]
+          });
+        });
+    }
+    else {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'No server settings found!!',
+        template: 'Please setup your server settings'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          $ionicModal.fromTemplateUrl('templates/serverSettingsModal.html', {
+            scope: $scope
+          }).then(function (modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+          });
+        } 
+        else {
+          console.log('You are not sure');
+        }
+      });
+    }
+  }
+
+  $scope.openProjectModal = function(){
+      $ionicModal.fromTemplateUrl('templates/newProjectModal.html', {
+        scope: $scope
+      }).then(function (modal) {
+        $scope.modal = modal;
+        $scope.id='';
+        console.log($scope.saveProject);
+
+        if ($scope.serverSettings != undefined) {
+          $ionicLoading.show();
+          $scope.id = $scope.makeId(); 
+          var header = {
+            "alg": "HS256",
+            "typ": "JWT"
+          };
+          var stringifiedHeader = $crypto.parseData(header);
+          var encodedHeader = $crypto.base64url(stringifiedHeader);
+
+          var payload = {
+            "method": "get",
+            "request": "price",
+            "id": $scope.id,
+            "admin": true
+          };
+          // console.log(payload);
+          var stringifiedPayload = $crypto.parseData(payload);
+          var encodedPayload = $crypto.base64url(stringifiedPayload);
+          
+          let encrypted = JSON.parse(localStorage.getItem('serverSettings'));
+          let decrypted = {serverType:'', host:'', port:'', username: '', password: ''};
+          
+          decrypted.serverType  = $crypto.decrypt(encrypted.serverType);
+            if(decrypted.serverType == "true")
+              decrypted.serverType = 'http';
+            else
+              decrypted.serverType = 'https';
+            
+          decrypted.host  = $crypto.decrypt(encrypted.host);
+          decrypted.port  = $crypto.decrypt(encrypted.port);
+          decrypted.password  = $crypto.decrypt(encrypted.password);
+          
+          $scope.serverSettings = decrypted;
+
+          var token = encodedHeader + "." + encodedPayload;
+          token = $crypto.encryptHMA(token, decrypted.password);
+          token = $crypto.base64url(token);
+          
+          var urlOwned = decrypted.serverType + '://' + decrypted.host + ':' + decrypted.port + '/get?jwt=' + encodedHeader + '.' + encodedPayload + '.' + token;
+
+          $scope.owned = "";
+          console.log(urlOwned);
+
+          $http.get(urlOwned)
+            .success(function(data, status, headers, config){  // note: when testing this might encounter CORS issue, testing work arounds include ionic run or a chrome ext
+              console.log('data sucess urlOwned');
+              console.log(data);
+              $scope.warnings = data.warnings;
+              $scope.priceData = data;
+              $ionicLoading.hide();
+            })
+            .error(function(data, status, headers, config){
+              console.log('data error urlOwned');
+              $ionicLoading.hide();
+              $interval.cancel($scope.interval);
+              $ionicPopup.alert({
+                title: 'Error',
+                template: "Can't Connect, Please Check Settings Or Server and Try Again",
+                buttons: [{
+                  text:'OK'
+                }]
+              });
+            });
+        }
+        else {
+          var confirmPopup = $ionicPopup.confirm({
+            title: 'No server settings found!!',
+            template: 'Please setup your server settings'
+          });
+
+          confirmPopup.then(function(res) {
+            if(res) {
+              $ionicModal.fromTemplateUrl('templates/serverSettingsModal.html', {
+                scope: $scope
+              }).then(function (modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+              });
+            } 
+            else {
+              console.log('You are not sure');
+            }
+          });
+        }
+
+        $scope.modal.show();
+      });
+    }
 })
 
 // Projects Detail Controller

@@ -4,12 +4,12 @@
         <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content class="padding">
-        <div>
-            <p ng-repeat="warn in warnings">{{warn}}</p>
-            <p>Estimated Price (satoshis): {{priceData.total_estimated_cost.satoshis}}</p>
-            <p>Estimated Price (btc): {{priceData.total_estimated_cost.btc}}</p>
-        </div>
-        <form name="projectForm" ng-submit="saveProject()">
+        <form ng-submit="saveProject()">
+            <div>
+                <p ng-repeat="warn in warnings">{{warn}}</p>
+                <p>Estimated Price (satoshis): {{priceData.total_estimated_cost.satoshis}}</p>
+                <p>Estimated Price (btc): {{priceData.total_estimated_cost.btc}}</p>
+            </div>              
             <div class="list">       
                 <div class="item item-divider" style="text-align:center;">
                     Project
@@ -22,7 +22,7 @@
                     <div class="input-label">
                         Type
                     </div>
-                    <select name="type" required ng-model="newProject.type">
+                    <select required ng-model="newProject.type">
                         <option value="Donation" selected="">Donation</option>
                         <option value="Other">Other</option>
                     </select>
@@ -31,7 +31,7 @@
                     <div class="input-label">
                         Category
                     </div>
-                    <select name="category" required ng-model="newProject.category">
+                    <select required ng-model="newProject.category">
                         <option value="Agricultural">Agricultural</option>
                         <option value="Commercial">Commercial</option>
                         <option value="Educational">Educational</option>
@@ -44,8 +44,8 @@
                     </select>
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">Title</span>
-                    <input name="title" required maxlength="25" ng-model="newProject.title" type="text">
+                    <span required class="input-label">Title</span>
+                    <input maxlength="25" ng-model="newProject.title" type="text">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Detail</span>
@@ -59,11 +59,11 @@
                 </div>             
                 <label class="item item-input">
                     <span class="input-label">Address</span>
-                    <input name="address"  required maxlength="35" ng-model="newProject.address" type="text">
+                    <input  required maxlength="35" ng-model="newProject.address" type="text">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Goal</span>
-                    <input name="goal" required step="any" min="0.01" maxlength="17" ng-model="newProject.goal" type="number" />
+                    <input required min="0.01000000" max="20999999.99999999" maxlength="17" ng-model="newProject.goal" type="number">
                 </label>
             </div>
             
@@ -100,7 +100,7 @@
                 </div>        
                 <label class="item item-input">
                     <span class="input-label">Picture URL</span>
-                    <input name="image" required maxlength="110" ng-model="newProject.imgURI" type="url">
+                    <input  required maxlength="110" ng-model="newProject.imgURI" type="url">
                 </label>
             </div>
             
@@ -110,29 +110,19 @@
                 </div>
                 <label class="item item-input">
                     <span class="input-label">Phone</span>
-                    <input maxlength="15" ng-model="newProject.phone" type="number">
+                    <input maxlength="15" ng-model="newProject.phone" type="tel">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Email</span>
-                    <input maxlength="38" ng-model="newProject.email" type="text">
+                    <input maxlength="38" ng-model="newProject.email" type="email">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Website</span>
                     <input maxlength="72" ng-model="newProject.website" type="url">
                 </label>
                 <div class="item">
-                    <button type="submit" class="button button-full">Submit</button>
+                <button class="button button-full">Submit</button>
                 </div>
-            </div>
-            <div style="padding:10px; background:#fcf8e3;">
-                <p ng-show="projectForm.type.$error.required">Project Type is required.</p>
-                <p ng-show="projectForm.category.$error.required">Category is required.</p>
-                <p ng-show="projectForm.title.$error.required">Title is required.</p>
-                <p ng-show="projectForm.address.$error.required">Address is required.</p>
-                <p ng-show="projectForm.goal.$error.required">Goal is required.</p>
-                <p ng-show="projectForm.image.$error.required">Image is required.</p>
-                <p ng-show="projectForm.image.$error.url">Image must be valid url (http://www.example.com)</p>
-                <p ng-show="projectForm.website.$error.url">Website must be valid url (http://www.example.com)</p>
             </div>
         </form>
     </ion-content>

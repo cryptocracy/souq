@@ -1,4 +1,4 @@
-agora
+souq
 .controller('SigninCtrl', function ($scope, $state, $crypto, userAuth, errorPopup) {
 	console.log("Welcome to SigninCtrl")
 	let tmp = localStorage.getItem('user');
@@ -18,7 +18,7 @@ agora
 			decrypted.pass  = $crypto.decrypt(encrypted.pass);
 			
 			if (decrypted.name == user.name && decrypted.pass == user.pass) {
-				$state.go('tab.projects');
+				$state.go('tab.account');
 				localStorage.setItem('userLogin', JSON.stringify(true));
 				console.log(userAuth.isAuthenticate());				
 			}

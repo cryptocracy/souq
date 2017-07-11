@@ -58,3 +58,11 @@ h1 {
     border-color: #43c0a2 !important;
     background-color: #43c0a2 !important;
 }
+
+.item-input{
+    padding: 6px 0 5px 5px;
+}
+
+.input-label {
+    width: 30%;
+}

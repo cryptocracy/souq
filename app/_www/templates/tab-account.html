@@ -12,8 +12,8 @@
         &nbsp;
       </div>
       <div class="col col-80">
-        <div align="center">
-          <qrcode data="{{deposit.address}}" size="200"></qrcode>
+        <div style="width:100%" align="center">
+          <a href="bitcoin:{{deposit.address}}"><qrcode data="{{deposit.address}}" size="200"></qrcode></a>
         </div>
       </div>
       <div class="col col-10">
@@ -31,10 +31,18 @@
        Balance: {{balance.total_balance.bitcoin}} (BTC)
     </div>
   </div>
-  <!-- <button class="button button-block button-assertive" ng-show="!userAuth.isAuthenticate()" ng-click="logout()">
-    Sign Out
-  </button> -->
-
+  
+  <ion-list>
+      <ion-item class="item item-divider">Owned Projects</ion-item>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in owned.names_owned" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
+        <qrcode data="{{project}}" size="50"></qrcode>
+        <h2>{{project}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(project)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>  
 
 </ion-view>

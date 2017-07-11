@@ -7,7 +7,11 @@
           <div class= "list">
             <label>
               <span class="input-label"></span>
-              <ion-toggle ng-model="serverSettings.serverType" toggle-class="toggle-calm">HTTP(s) vs HTTP</ion-toggle>
+              <!-- <ion-toggle ng-model="serverSettings.serverType" toggle-class="toggle-calm">HTTP(s) vs HTTP</ion-toggle> -->
+              <ion-list>
+                <ion-radio ng-model="serverSettings.serverType" ng-value="'false'" ng-click="test(serverSettings.serverType)">HTTP(s)</ion-radio>
+                <ion-radio ng-model="serverSettings.serverType" ng-value="'true'" ng-click="test(serverSettings.serverType)">HTTP</ion-radio>
+              </ion-list>
             </label>
             <label class="item item-input">
               <span class="input-label">Host/IP</span>

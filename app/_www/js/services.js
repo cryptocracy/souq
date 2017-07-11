@@ -1,4 +1,4 @@
-agora
+souq
 
 .factory('Projects', function() {
   // Might use a resource here that returns a JSON array
@@ -23,7 +23,7 @@ agora
     address: '1nybV3p2xE1fVi8aVwxnPpgfqH2KqWGzS',
     goal: '3.59',
     balance: '0',
-    title: '2017_school_supplies_for_4th_graders',
+    title: '2017_school_supplies_for_4th_graders Obaid',
     category: 'Educational',
     info: 'School supplies for the 4th graders',
     url: '',
@@ -99,84 +99,75 @@ agora
 // Service for user Authentication and user logout
 
 .factory('userAuth', function($state){
-
-    return{
-        isAuthenticate: function(){ // checking login condition
-            var auth =  JSON.parse(localStorage.getItem('userLogin'));  
-            if(auth == "true"){
-              auth = true;
-              return auth;
-            }
-            else{
-              auth = false;
-              return auth;
-            }
-            // return "kamran";          
-        },
-        userLogout: function(){ // logging out user
-            localStorage.setItem('userLogin', JSON.stringify(false));
-            $state.go('user.signin');
-        }
-    };
-
+  return{
+    isAuthenticate: function(){ // checking login condition
+      var auth =  JSON.parse(localStorage.getItem('userLogin'));  
+      if(auth == "true"){
+        auth = true;
+        return auth;
+      }
+      else{
+        auth = false;
+        return auth;
+      }
+    },
+    userLogout: function(){ // logging out user
+      localStorage.setItem('userLogin', JSON.stringify(false));
+      $state.go('user.signin');
+    }
+  };
 })
 
 .factory('errorPopup', function($ionicPopup, $state){
-    return{
-        signinError: function(){
-            $ionicPopup.alert({
-            title: 'Login Error!',
-            template: 'User or Password is Invalid!!',
-            buttons: [{
-              text:'OK',
-              onTap: function(e) {
-                // $scope.modal.hide();
-              }
-            }]
-          });
-        },
-        emptyField: function(){
-            $ionicPopup.alert({
-            title: 'Empty Field!',
-            template: 'Fill Out All Fields!',
-            buttons: [{
-              text:'OK',
-              onTap: function(e) {
-                // $scope.modal.hide();
-              }
-            }]
-          });
-        },
-        passwordMatch: function(){
-            $ionicPopup.alert({
-            title: 'Password Error!',
-            template: 'Password not match!',
-            buttons: [{
-              text:'OK',
-              onTap: function(e) {
-                // $scope.modal.hide();
-              }
-            }]
-          });
-        },
-        passwordMatchSuccess: function(){
-            $ionicPopup.alert({
-            title: 'Successful',
-            template: 'Successfully Sign Up!',
-            buttons: [{
-              text:'Get Started',
-              onTap: function(e) {
-                // $scope.modal.hide();
-                $state.go('tab.projects');
-              }
-            }]
-          });
-        }
-
-
-
-    };
-})
-
-
-;
+  return{
+    signinError: function(){
+        $ionicPopup.alert({
+        title: 'Login Error!',
+        template: 'User or Password is Invalid!!',
+        buttons: [{
+          text:'OK',
+          onTap: function(e) {
+            // $scope.modal.hide();
+          }
+        }]
+      });
+    },
+    emptyField: function(){
+        $ionicPopup.alert({
+        title: 'Empty Field!',
+        template: 'Fill Out All Fields!',
+        buttons: [{
+          text:'OK',
+          onTap: function(e) {
+            // $scope.modal.hide();
+          }
+        }]
+      });
+    },
+    passwordMatch: function(){
+        $ionicPopup.alert({
+        title: 'Password Error!',
+        template: 'Password not match!',
+        buttons: [{
+          text:'OK',
+          onTap: function(e) {
+            // $scope.modal.hide();
+          }
+        }]
+      });
+    },
+    passwordMatchSuccess: function(){
+        $ionicPopup.alert({
+        title: 'Successful',
+        template: 'Successfully Sign Up!',
+        buttons: [{
+          text:'Get Started',
+          onTap: function(e) {
+            // $scope.modal.hide();
+            $state.go('tab.account');
+          }
+        }]
+      });
+    }
+  };
+});

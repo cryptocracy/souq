@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
- var agora = angular.module('starter', ['ionic','mdo-angular-cryptography', 'monospaced.qrcode'])
+ var souq = angular.module('starter', ['ionic','ngCordova','mdo-angular-cryptography', 'monospaced.qrcode'])
 
 .run(function($ionicPlatform, $rootScope, $state,$timeout, userAuth) {
 

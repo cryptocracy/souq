@@ -1,21 +1,74 @@
 Souq: Decentralized Project Funding
 
-User Setup Guide
+[Souq](https://github.com/cryptocracy/souq) is a decentralized project tagging & funding app built on Blockstack.
 
- 1. Install Souq - App Store - (this repo is for source dev) [Source Code](https://github.com/cryptocracy/souq) 
- 
- 2. Preferred Server Prerequisites: 
- 
- [Blockstack](https://blockstack.org/docs)
- 
- [Node-Red](http://nodered.org/) 
- 
- [Redis](https://redis.io/topics/quickstart/)
- 
- [Import Flows](https://github.com/cryptocracy/flows)
- 
- [Configure Flows](https://github.com/cryptocracy/flows/wiki/Setup-Guide)
- 
- 3. Configure Souq Settings [Setup Guide](https://github.com/cryptocracy/souq/wiki/Setup-Guide)
- 
- 4. How to Use [Youtube Videos](https://www.youtube.com/watch?v=mcnTTxa9fEw&list=PLUdFA44fiMvhP7jdUsCfwP0mQNf_3fpKE)
+### Target group
+Souq is meant used by anyone with a `Project` that they think should be funded, or who wishes to support others and their.
+Users should not need to understand everything of the underlying technology, but if it matters they should
+be able to comprehend why and how decentralized crowdfunding operates and why it is important for them and their communities.
+
+### Problem to solve
+Current crowdfunding has some flaws:
+* `Projects` that properly qualify for funding are not able to receive it due to censorship.
+* Capital is often insufficiently available to meet the stated objectives.
+* Results aren't always publically available or open to public critique even though
+
+### Goal
+The goal is to enable users to easily create `Projects` that let other users easily find and fund. `Projects` are to be
+verifiable & secured by a blockchain. Besides that, this software should solve the problems mentioned above.
+
+### Minimal Viable Product (MVP)
+* [ ] Users are able to create `Projects` that have
+	* [ ] a title
+	* [ ] a description
+	* [ ] a payment address (btc, possibly others)
+	* [ ] a payment goal (amount desired in funding)
+	* [ ] a geolocation (latitude, longitude)
+	* [ ] optional additional contact details: phone, email, & external url
+* [ ] Users are able to manage their cryptocurrency like a wallet.
+* [ ] Users are able to send cryptocurrency to fund a discovered `Project`
+* [ ] Users are able to search for 'Projects` by its unique ID, owner ID, keywords, and or location.
+* [ ] Users are able to change ownership of their `Projects`
+
+### Future features
+* [ ] Users are able to Review a `Project` they have contributed funds to.
+* [ ] Users are able to track the History of a `Project` (change log of Project zone file)
+
+## Core components / Models
+* [ ] Create `Project`(s)
+* [ ] View `Project`(s)
+	* [ ] Get List of `Projects`: Inspect details of single `Project`(sortable by Distance, Total Goal, and % Funded)
+	* [ ] Get `Project` details: View the various information  
+	    * [ ] Inspect its Details: Title, Description, Image, Payment Address, Goal Amount, Fund %, Location on Map, Phone, Email, URL
+      * [ ] Inspect its Reviews (once feature is available)
+
+
+## User flow
+
+### Setup Souq
+* Alice and Bob both go through their initial Souq setup (install app, sync to Preferred server, deposit funds to their wallets)
+
+### Create a Project
+* Alice clicks `New Project` and fills out the form for creating a new `Project`
+* Upon "Save Project", redirected to her `Account` tab, showing a pending registration at the bottom of the list of Owned `Projects`.
+* The JSON object containing the respective data gets written into the zone file of Alice's new `Project` upon registration complete.
+* Alice retrieves unique ID and shares it with other users.
+
+### View a List of Projects
+* Bob first gets a list of `Projects` by id, owner id, keyword(s), location, and or additional funding details.
+
+#### Inspect a Individual Project
+* Alice's `Project` catches Bob's eye in the list when searching for nearby `Projects`
+	* Bob can click on her specific `Project` to inspect it
+	* The `Project` details and their elements can be more carefully inspected.
+
+#### Send Funds to Project
+* If Alice's `Project` is a worthy cause, Bob is able to send funds to the specified payment address
+	* Bob sees the goal amount
+	* Bob sees the payment address
+	* Bob can specify how much he would like to send
+	* The transaction is executed upon confirmation
+
+#### Audit Project History
+* If Alice's `Project` has ever been updated, then Bob sees the changes in a clean log of historical changes to its zone file.
+  * Bob sees when the goal payment address has changed, or other key details such as objective description changes.
