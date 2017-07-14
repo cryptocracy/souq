@@ -1,0 +1,46 @@
+<ion-view view-title="{{project.title}}">
+  <ion-content class="padding">
+    <div class="list card">
+        <div class="button-bar">
+            <a href="#" class="button button-outline item-icon-left icon ion-map button-bar"></a>
+            <a href="{{project.url}}" class="button button-outline item-icon-left icon ion-link button-bar"></a>
+            <a href="tel:{{project.phone}}" class="button button-outline item-icon-left icon ion-android-call button-bar"></a>
+            <a href="mailto:{{project.email}}" class="button button-outline item-icon-left icon ion-email button-bar"></a>
+            <a href="bitcoin:{{project.address}}" class="button button-outline item-icon-left icon ion-social-bitcoin button-bar"></a>
+        </div>
+        <div class="item item-avatar">
+        <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{project.address}}" ng-click="modal.show()"> -->
+
+        <qrcode data="{{project.address}}" size="50"></qrcode>
+
+        <h2>{{project.address}}</h2>
+        <p>{{project.category}} : {{project.balance}} / {{project.goal}} (BTC)</p>
+        </div>
+
+        <div class="item item-body">
+        {{project.info}}
+        <p>Expire Block : {{project.expire}}</p>
+        </div>
+    </div>
+    <div style="margin-top:40px">
+        <a class="button block" class="button">Related To ...</a>
+    </div>
+  </ion-content>
+
+    <script id="templates/modal.html" type="text/ng-template">
+        <ion-modal-view >
+            <ion-header-bar class="bar bar-header bar-royal">
+                <h1 class="title">QR</h1>
+                <button class="button button-clear button-primary" ng-click="modal.hide()">Done</button>
+            </ion-header-bar>
+            <ion-content class="padding">
+                <div class="list">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{project.address}}" style="height:200px">
+                    <h6>{{project.address}}</h6>
+                </div>
+
+            </ion-content>
+        </ion-modal-view>
+    </script>
+
+</ion-view>

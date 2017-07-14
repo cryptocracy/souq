@@ -1,0 +1,139 @@
+<ion-modal-view>
+    <ion-header-bar class="header">
+        <h1 class="title">New</h1>
+        <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div>
+            <p ng-repeat="warn in warnings">{{warn}}</p>
+            <p>Estimated Price (satoshis): {{priceData.total_estimated_cost.satoshis}}</p>
+            <p>Estimated Price (btc): {{priceData.total_estimated_cost.btc}}</p>
+        </div>
+        <form name="projectForm" ng-submit="saveProject()">
+            <div class="list">       
+                <div class="item item-divider" style="text-align:center;">
+                    Project
+                </div>  
+                 <label class="item item-input">
+                    <span class="input-label">ID</span>
+                    <input readonly="" ng-model="id" type="text">
+                </label>           
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Type
+                    </div>
+                    <select name="type" required ng-model="newProject.type">
+                        <option value="Donation" selected="">Donation</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Category
+                    </div>
+                    <select name="category" required ng-model="newProject.category">
+                        <option value="Agricultural">Agricultural</option>
+                        <option value="Commercial">Commercial</option>
+                        <option value="Educational">Educational</option>
+                        <option value="Financial">Financial</option>
+                        <option value="HealthCare">Health Care</option>
+                        <option value="Infrastructural">Infrastructural</option>
+                        <option value="Universal">Universal</option>
+                        <option value="Roads">Roads</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Title</span>
+                    <input name="title" required maxlength="25" ng-model="newProject.title" type="text">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Detail</span>
+                    <textarea maxlength="250" ng-model="newProject.detail" rows="3"></textarea>
+                </label>
+            </div>
+            
+            <div class="list">
+                <div class="item item-divider" style="text-align:center;">
+                    Bitcoin
+                </div>             
+                <label class="item item-input">
+                    <span class="input-label">Address</span>
+                    <input name="address"  required maxlength="35" ng-model="newProject.address" type="text">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Goal</span>
+                    <input name="goal" required step="any" min="0.01" maxlength="17" ng-model="newProject.goal" type="number" />
+                </label>
+            </div>
+            
+            <div class="list">
+                <div class="item item-divider" style="text-align:center;">
+                    Coordinates
+                </div>
+                <label class="item item-input">
+                    <span class="input-label">Latitude</span>
+                    <input required readonly ng-model="newProject.latitude" type="text">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Longitude</span>
+                    <input required readonly ng-model="newProject.longitude" type="text">
+                </label>
+            </div>
+            
+            <!-- <div class="list">
+                <div class="item item-divider" style="text-align:center;">
+                    Image
+                </div>
+                <label class="item item-input">
+                    <button class="button button-block" ng-click="takePhoto()">
+                        <i class="ion-camera"></i>
+                        Take Picture
+                    </button>
+                    <img ng-show="imgURI" ng-src="{{imgURI}}" alt="Not render" style="height: 50px; width: 50%; padding: 3px 40px 3px 20px;">
+                </label>
+                
+            </div>    -->     
+            <div class="list">
+                <div class="item item-divider" style="text-align:center;">
+                    Image
+                </div>        
+                <label class="item item-input">
+                    <span class="input-label">Picture URL</span>
+                    <input name="image" required maxlength="110" ng-model="newProject.imgURI" type="url">
+                </label>
+            </div>
+            
+            <div class="list">
+                <div class="item item-divider" style="text-align:center;">
+                    Contacts
+                </div>
+                <label class="item item-input">
+                    <span class="input-label">Phone</span>
+                    <input maxlength="15" ng-model="newProject.phone" type="number">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input maxlength="38" ng-model="newProject.email" type="text">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Website</span>
+                    <input maxlength="72" ng-model="newProject.website" type="url">
+                </label>
+                <div class="item">
+                    <button type="submit" class="button button-full">Submit</button>
+                </div>
+            </div>
+            <div style="padding:10px; background:#fcf8e3;">
+                <p ng-show="projectForm.type.$error.required">Project Type is required.</p>
+                <p ng-show="projectForm.category.$error.required">Category is required.</p>
+                <p ng-show="projectForm.title.$error.required">Title is required.</p>
+                <p ng-show="projectForm.address.$error.required">Address is required.</p>
+                <p ng-show="projectForm.goal.$error.required">Goal is required.</p>
+                <p ng-show="projectForm.image.$error.required">Image is required.</p>
+                <p ng-show="projectForm.image.$error.url">Image must be valid url (http://www.example.com)</p>
+                <p ng-show="projectForm.website.$error.url">Website must be valid url (http://www.example.com)</p>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>
