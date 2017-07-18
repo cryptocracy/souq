@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.cryptocracy.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="1">
+<widget id="io.cryptocracy.app" version="1.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="1">
   <name>Cryptocracy</name>
-  <description>Decentralized Project Funding</description>
+  <description>Decentralized Project Tagging &amp; Funding</description>
   <author email="admin@cryptocracy.io" href="http://cryptocracy.io/">Ty George</author>
   <content src="index.html" />
   <access origin="*" />
