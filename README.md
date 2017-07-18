@@ -1,6 +1,6 @@
-Souq: Decentralized Project Funding
+Souq: Decentralized Project Tagging & Funding
 
-[Souq](https://github.com/cryptocracy/souq) is a decentralized project tagging & funding app built on Blockstack.
+[Souq](https://github.com/cryptocracy/souq) is a decentralized project tagging & funding app powered by blockchain technology.
 
 ### Target group
 Souq is meant used by anyone with a `Project` that they think should be funded, and or anyone who wishes to support others `Projects`.
@@ -18,15 +18,20 @@ The goal is to enable users to easily create `Projects` that let other users eas
 verifiable & secured by a blockchain. Besides that, this software should solve the problems mentioned above.
 
 ### Minimal Viable Product (MVP)
-* [ ] Users are able to create `Projects` that have
-	* [ ] a title
-	* [ ] a description
-	* [ ] a payment address (btc, possibly others)
-	* [ ] a payment goal (amount desired in funding)
-	* [ ] a geolocation (latitude, longitude)
-	* [ ] optional additional contact details: phone, email, & external url
+* [x] Users are able to create `Projects` that have
+	* [x] a title
+	* [x] a description
+	* [x] a payment address (other coming soon)
+	* [x] a payment goal (amount desired in funding)
+	* [x] a geolocation (latitude, longitude)
+	* [x] a optional phone number
+	* [x] a optional email address 
+	* [x] a optional external url
 * [ ] Users are able to manage their cryptocurrency like a wallet.
-* [ ] Users are able to send cryptocurrency to fund a discovered `Project`
+* [ ] Users are able to manage their owned `Projects`.
+	* [ ] update data of a owned `Project`
+	* [ ] transfer ownership of a owned `Project`
+* [ ] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
 * [ ] Users are able to search for 'Projects` by its unique ID, owner ID, keywords, and or location.
 * [ ] Users are able to change ownership of their `Projects`
 
@@ -35,12 +40,18 @@ verifiable & secured by a blockchain. Besides that, this software should solve t
 * [ ] Users are able to track the History of a `Project` (change log of Project zone file)
 
 ## Core components / Models
-* [ ] Create `Project`(s)
-* [ ] View `Project`(s)
-	* [ ] Get List of `Projects`: Inspect details of single `Project`(sortable by Distance, Total Goal, and % Funded)
-	* [ ] Get `Project` details: View the various information  
-	    * [ ] Inspect its Details: Title, Description, Image, Payment Address, Goal Amount, Fund %, Location on Map, Phone, Email, URL
-      * [ ] Inspect its Reviews (once feature is available)
+* [x] `Account` tab
+	* [x] Configure Settings (Button top right)
+		* [x] define the Path to preferred node, port number, and JWT secret
+* [x] `Projects` tab
+	* [x] Create new `Project` (Button top left)
+		* [ ] define the `Project` data & details
+	* [ ] View `Project`(s)
+		* [ ] Get List of `Projects`: Inspect details of single `Project`(sortable by Distance, Total Goal, and % Funded)
+			* [ ] Get `Project` details: View the various information  
+				* [ ] Inspect its Details: Title, Description, Image, Payment Address, Goal Amount, Fund %, Location on Map, Phone, Email, URL
+				* [ ] Inspect its Reviews (once feature is available)
+				* [ ] Send cryptocurrency to the specified payment address of the `Project`
 
 
 ## User flow
