@@ -1,6 +1,4 @@
-Souq: Decentralized Project Tagging & Funding
-
-[Souq](https://github.com/cryptocracy/souq) is a decentralized project tagging & funding app powered by blockchain technology.
+[Souq](https://github.com/cryptocracy/souq) Decentralized Project Tagging & Funding
 
 ### Target group
 Souq is meant to be used by anyone with a `Project` they think should be funded, and or anyone who wants to support said `Projects`. We hope to have a wide variety of use cases.
