@@ -31,8 +31,8 @@ Solve the stated problems above by giving users the ability to easily create dec
 * [ ] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
 * [x] Users are able to search for 'Projects` by its Unique ID.
 * [ ] Users are able to search for 'Projects` by relative Owner. 
-* [x] Users are able to search for 'Projects` by relative Properties, ie keywords etc.
-* [x] Users are able to search for 'Projects` by relative Proximity to their current location. 
+* [x] Users are able to search for 'Projects` by relative Properties, ie keywords etc. (yes but `chain-to-cache` needs finished)
+* [x] Users are able to search for 'Projects` by relative Proximity to their current location. (yes but `chain-to-cache` needs finished)
 
 ### Future features
 * [ ] Users are able to `Review` a `Project` they have contributed funds to.
