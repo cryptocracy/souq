@@ -19,45 +19,62 @@ verifiable & secured by a blockchain. Besides that, this software should solve t
 
 ### Minimal Viable Product (MVP)
 * [x] Users are able to create `Projects` that have
-	* [x] a title
-	* [x] a description
-	* [x] a payment address (other coming soon)
-	* [x] a payment goal (amount desired in funding)
-	* [x] a geolocation (latitude, longitude)
-	* [x] a optional phone number
-	* [x] a optional email address 
-	* [x] a optional external url
+	* [x] title
+	* [x] description
+	* [x] payment address
+	* [x] goal amount
+	* [x] coordinates (latitude, longitude)
+	* [x] image url
+	* [x] phone number
+	* [x] email address 
+	* [x] external url
 * [ ] Users are able to manage their cryptocurrency like a wallet.
 * [ ] Users are able to manage their owned `Projects`.
 	* [ ] update data of a owned `Project`
 	* [ ] transfer ownership of a owned `Project`
 * [ ] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
-* [ ] Users are able to search for 'Projects` by its unique ID, owner ID, keywords, and or location.
-* [ ] Users are able to change ownership of their `Projects`
+* [x] Users are able to search for 'Projects` by its Unique ID.
+* [ ] Users are able to search for 'Projects` by relative Owner. 
+* [x] Users are able to search for 'Projects` by relative Properties, ie keywords etc.
+* [x] Users are able to search for 'Projects` by relative Proximity to their current location. 
 
 ### Future features
 * [ ] Users are able to Review a `Project` they have contributed funds to.
 * [ ] Users are able to track the History of a `Project` (change log of Project zone file)
 
 ## Core components / Models
+* [ ] `Lock` - intial local application lock (not to be confused with your Blockstack Password)
 * [x] `Account` tab
 	* [x] Configure Settings (Button top right)
-		* [x] define the Path to preferred node, port number, and JWT secret
+		* [x] Set the Preferred node Path, Port Number, and Secret
 * [x] `Projects` tab
 	* [x] Create new `Project` (Button top left)
-		* [ ] define the `Project` data & details
-	* [ ] View `Project`(s)
-		* [ ] Get List of `Projects`: Inspect details of single `Project`(sortable by Distance, Total Goal, and % Funded)
-			* [ ] Get `Project` details: View the various information  
-				* [ ] Inspect its Details: Title, Description, Image, Payment Address, Goal Amount, Fund %, Location on Map, Phone, Email, URL
+		* [x] Save the `Project` data details by defining the various fields.
+	* [x] View `Project`(s) (still being cleaned up)
+		* [ ] Get List of `Projects`: By ID, By Properties, or By Proximity
+			* [ ] Inspect `Project` details: View the various information  
+				* [ ] Inspect its Details: 
+					* [x] Title
+					* [x] Description
+					* [ ] Image URL (currently simple, needs Gaia integration)
+					* [x] Payment Address QR Code
+					* [ ] Payment Address Button
+					* [x] Goal Amount
+					* [ ] Current % Funded
+					* [x] Location on Map
+					* [x] Phone Button
+					* [x] Email Button
+					* [x] External URL Button
 				* [ ] Inspect its Reviews (once feature is available)
-				* [ ] Send cryptocurrency to the specified payment address of the `Project`
+				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via `Account` funds.
+				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via external Wallet
+				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via a ShapeShift
 
 
 ## User flow
 
 ### Setup Souq
-* Alice and Bob both go through their initial Souq setup (install app, sync to Preferred server, deposit funds to their wallets)
+* Alice and Bob both go through their initial Souq setup (Install/Setup Preferred Node, Install/Setup Mobile App, Funds Account)
 
 ### Create a Project
 * Alice clicks `New Project` and fills out the form for creating a new `Project`
@@ -69,7 +86,7 @@ verifiable & secured by a blockchain. Besides that, this software should solve t
 * Bob first gets a list of `Projects` by id, owner id, keyword(s), location, and or additional funding details.
 
 #### Inspect a Individual Project
-* Alice's `Project` catches Bob's eye in the list when searching for nearby `Projects`
+* Alice's `Project` catches Bob's eye in the list when searching for `Projects` by `Proximity`
 	* Bob can click on her specific `Project` to inspect it
 	* The `Project` details and their elements can be more carefully inspected.
 
