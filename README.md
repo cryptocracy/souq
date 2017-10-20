@@ -8,10 +8,11 @@ Users should not need to understand everything of the underlying technology, but
 be able to comprehend why and how decentralized crowdfunding operates and why it is important for them and their communities.
 
 ### Problem to solve
-Current crowdfunding has some flaws:
-* `Projects` that properly qualify for funding are not able to receive it due to censorship.
-* Capital is often insufficiently available to meet the stated objectives.
-* Results aren't always publically available or open to public critique even though
+Current online crowdfunding has some flaws:
+* Crowdfunding apps like Kickstarter and Indigogo are centrally controlled and subject to censorship and favoritism.
+* Crowdfunding apps do not faciliate funding of initiatives at local levels. 
+* Funding is typically insufficiently available to meet the stated objectives due to lack of discovery by relavent would be backer(s).
+* Results aren't always available to public critique.
 
 ### Goal
 The goal is to enable users to easily create `Projects` that let other users easily find and fund. `Projects` are to be
