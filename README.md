@@ -3,9 +3,7 @@ Souq: Decentralized Project Tagging & Funding
 [Souq](https://github.com/cryptocracy/souq) is a decentralized project tagging & funding app powered by blockchain technology.
 
 ### Target group
-Souq is meant used by anyone with a `Project` that they think should be funded, and or anyone who wishes to support others `Projects`.
-Users should not need to understand everything of the underlying technology, but if it matters they should
-be able to comprehend why and how decentralized crowdfunding operates and why it is important for them and their communities.
+Souq is meant to be used by anyone with a `Project` they think should be funded, and or anyone who wants to support said `Projects`. We hope to have a wide variety of use cases.
 
 ### Problem to solve
 Current online crowdfunding has some flaws:
@@ -15,8 +13,7 @@ Current online crowdfunding has some flaws:
 * Results aren't always available to public critique.
 
 ### Goal
-The goal is to enable users to easily create `Projects` that let other users easily find and fund. `Projects` are to be
-verifiable & secured by a blockchain. Besides that, this software should solve the problems mentioned above.
+Solve the stated problems above by giving users the ability to easily create decentralized `Projects` that other users can easily find and fund. `Projects` are secured by Blockstack and the Bitcoin Blockchain. 
 
 ### Minimal Viable Product (MVP)
 * [x] Users are able to create `Projects` that have
@@ -40,8 +37,9 @@ verifiable & secured by a blockchain. Besides that, this software should solve t
 * [x] Users are able to search for 'Projects` by relative Proximity to their current location. 
 
 ### Future features
-* [ ] Users are able to Review a `Project` they have contributed funds to.
+* [ ] Users are able to `Review` a `Project` they have contributed funds to.
 * [ ] Users are able to track the History of a `Project` (change log of Project zone file)
+* [ ] `Project` owners are able to create delegatable `Tasks` to other Users that can be independently described & funded (sub domains)
 
 ## Core components / Models
 * [ ] `Lock` - intial local application lock (not to be confused with your Blockstack Password)
