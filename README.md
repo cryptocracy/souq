@@ -5,7 +5,7 @@ Souq: Decentralized Project Tagging & Funding
 ### Target group
 Souq is meant to be used by anyone with a `Project` they think should be funded, and or anyone who wants to support said `Projects`. We hope to have a wide variety of use cases.
 
-### Problem to solve
+### Problems to solve
 Current online crowdfunding has some flaws:
 * Crowdfunding apps like Kickstarter and Indigogo are centrally controlled and subject to censorship and favoritism.
 * Crowdfunding apps do not faciliate funding of initiatives at local levels. 
