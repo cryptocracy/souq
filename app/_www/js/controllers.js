@@ -80,7 +80,7 @@ souq
               $interval.cancel($scope.interval);
               $ionicPopup.alert({
                 title: 'Error',
-                template: "Can't Connect, Please Check Settings Or Server and Try Again",
+                template: "Can't Connect, Please Check Settings Or Node and Try Again",
                 buttons: [{
                   text:'OK'
                 }]
@@ -89,8 +89,8 @@ souq
         }
         else {
           var confirmPopup = $ionicPopup.confirm({
-            title: 'No server settings found!!',
-            template: 'Please setup your server settings'
+            title: 'No Node settings found!!',
+            template: 'Please setup your Node settings'
           });
 
           confirmPopup.then(function(res) {
@@ -282,7 +282,7 @@ souq
           $interval.cancel($scope.interval);
           $ionicPopup.alert({
             title: 'Error',
-            template: "Can't Connect, Please Check Settings Or Server and Try Again",
+            template: "Can't Connect, Please Check Settings Or Node and Try Again",
             buttons: [{
               text:'OK'
             }]
@@ -291,8 +291,8 @@ souq
     }
     else {
       var confirmPopup = $ionicPopup.confirm({
-        title: 'No server settings found!!',
-        template: 'Please setup your server settings'
+        title: 'No Node settings found!!',
+        template: 'Please setup your Node settings'
       });
 
       confirmPopup.then(function(res) {

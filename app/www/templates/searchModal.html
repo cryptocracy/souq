@@ -1,0 +1,132 @@
+<ion-modal-view>
+    <ion-header-bar class="header">
+      <h1 class="title">Search</h1>
+      <button class="button button-clear header-icon" ng-click="hideSeacrhModal()">Cancel</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Select Type
+          </div>
+          <select ng-model="type" ng-change="showSelectValue(type)">
+            <option>Proximity</option>
+            <option>Properties</option>
+            <option>Project ID</option>
+          </select>
+        </label>
+      </div>
+
+      <div ng-if="type == 'Proximity'">
+        <div class="list">
+          
+          <label class="item item-input">
+            <span class="input-label">Latitude</span>
+            <input disabled="true" ng-model="proximityData.latitude" type="text">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Longitude</span>
+            <input disabled="true" ng-model="proximityData.longitude" type="text">
+          </label>
+          
+          <label class="item item-input">
+            <span class="input-label">Distance</span>
+            <input min="0" max="50000" ng-model="proximityData.distance" type="number" ng-change="onNumberChange()" >
+          </label>
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Select Unit
+            </div>
+            <select ng-model="unit" ng-change="setUnit(unit)">
+              <option>Meters</option>
+              <option>Kilometers</option>
+              <option>Feet</option>
+              <option>Miles</option>
+            </select>
+          </label>
+
+          <button class="button button-full" ng-click="search(1, proximityData)">Search by Proximity</button>
+
+        </div>
+      </div>
+
+      <div ng-if="type == 'Properties'">
+        <div class="list">
+          
+          <label class="item item-input">
+            <span class="input-label">Keyword</span>
+            <input type="text" placeholder="" ng-model="propertyData.keyword">
+          </label>
+
+          <label class="item item-input item-select">
+            <span class="input-label">Category</span>
+             <select name="category" required ng-model="propertyData.category">
+                  <option value="Agricultural">Agricultural</option>
+                  <option value="Commercial">Commercial</option>
+                  <option value="Educational">Educational</option>
+                  <option value="Financial">Financial</option>
+                  <option value="HealthCare">Health Care</option>
+                  <option value="Infrastructural">Infrastructural</option>
+                  <option value="Universal">Universal</option>
+                  <option value="Roads">Roads</option>
+                  <option value="Other">Other</option>
+              </select>
+          </label>
+
+          <label class="item item-input item-select">
+            <span class="input-label">Type</span>
+            <select name="type" required ng-model="propertyData.type">
+                <option value="Donation" selected>Donation</option>
+                <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <!-- <label class="item item-input">
+            <span class="input-label">Detail</span>
+            <input type="text" placeholder="" ng-model="propertyData.detail">
+          </label> -->
+
+          <label class="item item-input">
+            <span class="input-label">Phone</span>
+            <input type="number" placeholder="" ng-model="propertyData.phone">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Email</span>
+            <input type="email" placeholder="" ng-model="propertyData.email">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Website</span>
+            <input type="url" placeholder="" ng-model="propertyData.website">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Address</span>
+            <input type="text" placeholder="" ng-model="propertyData.address">
+          </label>
+          <div align="right">
+            <button class="button button-small button-clear button-positive" style="left: -25px;" ng-click="scanQr()">
+              Scan QR
+            </button>  
+          </div>
+          <button class="button button-full" ng-click="search(2, propertyData)">Search by Properties</button>
+
+        </div>
+      </div>
+      <div ng-if="type == 'Project ID'">
+        <div class="list">
+
+          <label class="item item-input">
+            <span class="input-label">Project ID</span>
+            <input type="text" placeholder="pr01-33u8oz9a3n5wu6pomej9s39r" ng-model="projectId.projectId">
+          </label>
+
+          <button class="button button-full" ng-click="search(3, projectId)">Search by Project ID</button>
+
+        </div>
+      </div>
+    </ion-content>
+</ion-modal-view>

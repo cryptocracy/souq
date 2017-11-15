@@ -1,4 +1,9 @@
 {
-  "name": "Cryptocracy",
-  "app_id": "d3644d43"
+  "name": "Souq",
+  "app_id": "d3644d43",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ],
+  "integrations": {}
 }

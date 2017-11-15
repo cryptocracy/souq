@@ -34,7 +34,7 @@
   
   <ion-list>
       <ion-item class="item item-divider">Owned Projects</ion-item>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in owned.names_owned" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in owned.names_owned" type="item-text-wrap" href="#/tab/account-project/{{project}}">
         <qrcode data="{{project}}" size="50"></qrcode>
         <h2>{{project}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>

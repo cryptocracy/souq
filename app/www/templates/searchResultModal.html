@@ -1,0 +1,48 @@
+<ion-modal-view>
+    <ion-header-bar class="header">
+      <h1 class="title">Search Results</h1>
+      <button class="button button-clear header-icon" ng-click="hideSeacrhResultModal()">Cancel</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+
+      <div ng-if="type == 'Proximity'">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="proximity in proximityReturnedData" type="item-text-wrap" href="#/tab/projects/{{proximity[0]}}" ng-click="hideSeacrhResultModal()">
+          <!-- <qrcode data="{{proximity.btcaddress}}" size="50"></qrcode> -->
+          <!-- <h2>{{proximity.title}}</h2> -->
+          <p><!-- {{proximity.category}} --> : {{proximity[1]}} (BTC)</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+
+          <ion-option-button class="button-assertive" ng-click="remove(proximity)">
+            Delete
+          </ion-option-button>
+        </ion-item>
+      </div>
+
+      <div ng-if="type == 'Properties'">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="properties in propertiesReturnedData" type="item-text-wrap" href="#/tab/projects/{{properties.id}}" ng-click="hideSeacrhResultModal()">
+          <qrcode data="{{properties.btcaddress}}" size="50"></qrcode>
+          <h2>{{properties.title}}</h2>
+          <p>{{properties.category}} : {{properties.btcgoal}} (BTC)</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+
+          <ion-option-button class="button-assertive" ng-click="remove(properties)">
+            Delete
+          </ion-option-button>
+        </ion-item>
+      </div>
+
+      <div ng-if="type == 'Project ID'">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projectIDReturnedData.project" type="item-text-wrap" href="#/tab/projects/{{project.id}}" ng-click="hideSeacrhResultModal()">
+          <qrcode data="{{project.bitcoin.address}}" size="50"></qrcode>
+          <h2>{{project.project.title}}</h2>
+          <p>{{project.project.category}} : {{project.bitcoin.goal}} (BTC)</p>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+
+          <ion-option-button class="button-assertive" ng-click="remove(project)">
+            Delete
+          </ion-option-button>
+        </ion-item>
+      </div>
+
+    </ion-content>
+</ion-modal-view>

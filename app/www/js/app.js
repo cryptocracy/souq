@@ -24,8 +24,9 @@
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $cryptoProvider) {
+.config(function($stateProvider, $urlRouterProvider, $cryptoProvider, $sceDelegateProvider) {
 
+  $sceDelegateProvider.resourceUrlWhitelist(['**']);
   $cryptoProvider.setCryptographyKey('ABCD123');
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -80,6 +81,17 @@
     }
   })
 
+  .state('tab.accountProject', {
+    url: '/account-project/:projectId',
+    cache:false,
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/project-detail.html',
+        controller: 'ProjectDetailCtrl'
+      }
+    }
+  })
+
   .state('tab.projects', {
       url: '/projects',
       cache:false,
@@ -92,7 +104,6 @@
     })
     .state('tab.project-detail', {
       url: '/projects/:projectId',
-      cache:false,
       views: {
         'tab-projects': {
           templateUrl: 'templates/project-detail.html',

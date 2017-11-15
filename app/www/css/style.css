@@ -15,6 +15,10 @@ img{
 	width: 100%
 }
 
+.header-item {
+    color: #fff !important;
+}
+
 .item-complex.item-icon-right .item-content {
     padding-left: 20px;
 }

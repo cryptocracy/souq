@@ -1,6 +1,6 @@
 souq
 
-.factory('Projects', function() {
+.factory('Projects', function($crypto, $http) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data until array from api call is ready
@@ -84,12 +84,7 @@ souq
       projects.splice(projects.indexOf(project), 1);
     },
     get: function(projectId) {
-      for (var i = 0; i < projects.length; i++) {
-        if (projects[i].id === parseInt(projectId)) {
-          return projects[i];
-        }
-      }
-      return null;
+      
     }
   };
 })

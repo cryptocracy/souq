@@ -1,18 +1,56 @@
 <ion-view view-title="Projects">
-    <ion-nav-buttons side="left">
-        <button class="button icon button-clear ion-ios-plus-outline header-icon" ng-click="openProjectModal()"></button>
+  <ion-nav-buttons side="left">
+      <button class="button icon button-clear ion-ios-plus-outline header-icon" ng-click="openProjectModal()"></button>
     </ion-nav-buttons>
   <ion-nav-buttons side="right">
-      <button class="button icon button-clear ion-android-list header-icon" ng-click="filterProjects()">
+      <button class="button icon button-clear ion-android-list header-icon" ng-click="openSeacrhModal()">
       </button>
-   </ion-nav-buttons>
+  </ion-nav-buttons>
   <ion-content class="has-header padding">
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"></ion-refresher>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()" ng-if="type == 'Default'"></ion-refresher>
+    <ion-list ng-if="type == 'Default'">
+      <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
         <qrcode data="{{project.address}}" size="50"></qrcode>
         <h2>{{project.title}}</h2>
         <p>{{project.category}} : {{project.goal}} (BTC)</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(project)">
+          Delete
+        </ion-option-button>
+      </ion-item> -->
+      <div align="center" style="margin-top: 20px">
+        <h3>Use filters to get projects.</h3>  
+      </div>
+      
+    </ion-list>
+
+    <ion-list ng-if="type == 'Proximity'">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="proximity in proximityReturnedData" type="item-text-wrap" href="#/tab/projects/{{proximity[0]}}">
+        <h2>Project ID: {{proximity[0]}}</h2>
+        <p>Distance: {{proximity[1]}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-if="type == 'Properties'">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="properties in propertiesReturnedData" type="item-text-wrap" href="#/tab/projects/{{properties.id}}">
+        <qrcode data="{{properties.btcaddress}}" size="50"></qrcode>
+        <h2>{{properties.title}}</h2>
+        <p>{{properties.category}} : {{properties.btcgoal}} (BTC)</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(properties)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list ng-if="type == 'Project ID'">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projectIDReturnedData.project" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
+        <qrcode data="{{project.bitcoin.address}}" size="50"></qrcode>
+        <h2>{{project.project.title}}</h2>
+        <p>{{project.project.category}} : {{project.bitcoin.goal}} (BTC)</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-assertive" ng-click="remove(project)">
