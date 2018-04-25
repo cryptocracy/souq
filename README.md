@@ -15,15 +15,18 @@ Solve the stated problems above by giving users the ability to easily create dec
 
 ### Minimal Viable Product (MVP)
 * [x] Users are able to create `Projects` that have
-	* [x] title
-	* [x] description
-	* [x] payment address
-	* [x] goal amount
-	* [x] coordinates (latitude, longitude)
-	* [x] image url
-	* [x] phone number
-	* [x] email address 
-	* [x] external url
+	* [x] Title
+	* [x] Description
+	* [X] Category (more coming)
+	* [X] Type (more coming)
+	* [ ] Status (almost done)
+	* [x] Payment address
+	* [x] Goal amount
+	* [x] Coordinates (latitude, longitude)
+	* [x] Image url
+	* [x] Phone number
+	* [x] Email address 
+	* [x] External url
 * [x] users are able to update data of a owned `Project`
 * [x] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
 * [x] Users are able to search for 'Projects` by its Unique ID.
@@ -53,7 +56,7 @@ Solve the stated problems above by giving users the ability to easily create dec
 					* [x] Description
 					* [X] Category (more coming)
 					* [X] Type (more coming)
-					* [ ] Status
+					* [ ] Status (almost done)
 					* [ ] Image URL (currently simple, needs Gaia integration)
 					* [x] Payment Address QR Code
 					* [X] Payment Address Button
