@@ -29,11 +29,11 @@ Solve the stated problems above by giving users the ability to easily create dec
 	* [x] External url
 * [x] users are able to update data of a owned `Project`
 * [x] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
-* [x] Users are able to search for 'Projects` by its Unique ID.
-* [x] Users are able to search for 'Projects` by relative Properties, ie keywords etc. (yes but `chain-to-cache` needs finished)
-* [x] Users are able to search for 'Projects` by relative Proximity to their current location. (yes but `chain-to-cache` needs finished)
+* [x] Users are able to search for `Projects` by its Unique ID.
+* [x] Users are able to search for `Projects` by relative Properties, ie keywords etc.
+* [x] Users are able to search for `Projects` by relative Proximity to their current location. 
 * [ ] Users are able to transfer ownership of a owned `Project` to another user.
-* [ ] Users are able to search for 'Projects` by relative Owner.
+* [ ] Users are able to search for `Projects` by relative Owner.
 
 ### Future features
 * [ ] Users are able to `Review` a `Project` they have contributed funds to.
