@@ -24,15 +24,13 @@ Solve the stated problems above by giving users the ability to easily create dec
 	* [x] phone number
 	* [x] email address 
 	* [x] external url
-* [ ] Users are able to manage their cryptocurrency like a wallet.
-* [ ] Users are able to manage their owned `Projects`.
-	* [ ] update data of a owned `Project`
-	* [ ] transfer ownership of a owned `Project`
-* [ ] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
+* [x] users are able to update data of a owned `Project`
+* [x] Users are able to send cryptocurrency to the specified payment address of a discovered `Project`
 * [x] Users are able to search for 'Projects` by its Unique ID.
-* [ ] Users are able to search for 'Projects` by relative Owner. 
 * [x] Users are able to search for 'Projects` by relative Properties, ie keywords etc. (yes but `chain-to-cache` needs finished)
 * [x] Users are able to search for 'Projects` by relative Proximity to their current location. (yes but `chain-to-cache` needs finished)
+* [ ] Users are able to transfer ownership of a owned `Project` to another user.
+* [ ] Users are able to search for 'Projects` by relative Owner.
 
 ### Future features
 * [ ] Users are able to `Review` a `Project` they have contributed funds to.
@@ -48,14 +46,17 @@ Solve the stated problems above by giving users the ability to easily create dec
 	* [x] Create new `Project` (Button top left)
 		* [x] Save the `Project` data details by defining the various fields.
 	* [x] View `Project`(s) (still being cleaned up)
-		* [ ] Get List of `Projects`: By ID, By Properties, or By Proximity
-			* [ ] Inspect `Project` details: View the various information  
+		* [x] Get List of `Projects`: By ID, By Properties, or By Proximity
+			* [x] Inspect `Project` details: View the various information  
 				* [ ] Inspect its Details: 
 					* [x] Title
 					* [x] Description
+					* [X] Category (more coming)
+					* [X] Type (more coming)
+					* [ ] Status
 					* [ ] Image URL (currently simple, needs Gaia integration)
 					* [x] Payment Address QR Code
-					* [ ] Payment Address Button
+					* [X] Payment Address Button
 					* [x] Goal Amount
 					* [ ] Current % Funded
 					* [x] Location on Map
@@ -63,8 +64,8 @@ Solve the stated problems above by giving users the ability to easily create dec
 					* [x] Email Button
 					* [x] External URL Button
 				* [ ] Inspect its Reviews (once feature is available)
-				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via `Account` funds.
-				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via external Wallet
+				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via blockstack wallet.
+				* [x] Send Cryptocurrency to the specified payment address of the `Project` via external Wallet
 				* [ ] Send Cryptocurrency to the specified payment address of the `Project` via a ShapeShift
 
 
@@ -90,7 +91,7 @@ Solve the stated problems above by giving users the ability to easily create dec
 #### Send Funds to Project
 * If Alice's `Project` is a worthy cause, Bob is able to send funds to the specified payment address
 	* Bob sees the goal amount
-	* Bob sees the payment address
+	* Bob sees the payment address qr code, upon click is presented with funding options (wallet select)
 	* Bob can specify how much he would like to send
 	* The transaction is executed upon confirmation
 
