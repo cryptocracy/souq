@@ -19,7 +19,7 @@ Solve the stated problems above by giving users the ability to easily create dec
 	* [x] Description
 	* [X] Category (more coming)
 	* [X] Type (more coming)
-	* [ ] Status (almost done)
+	* [ ] Stage (almost done)
 	* [x] Payment address
 	* [x] Goal amount
 	* [x] Coordinates (latitude, longitude)
@@ -56,7 +56,7 @@ Solve the stated problems above by giving users the ability to easily create dec
 					* [x] Description
 					* [X] Category (more coming)
 					* [X] Type (more coming)
-					* [ ] Status (almost done)
+					* [ ] Stage (almost done)
 					* [ ] Image URL (currently simple, needs Gaia integration)
 					* [x] Payment Address QR Code
 					* [X] Payment Address Button
@@ -97,6 +97,11 @@ Solve the stated problems above by giving users the ability to easily create dec
 	* Bob sees the payment address qr code, upon click is presented with funding options (wallet select)
 	* Bob can specify how much he would like to send
 	* The transaction is executed upon confirmation
+
+#### Stage Changes to Project
+* As Alice's `Project` matures, and the outcome is clear, Alice updates the `stage` field as needed.
+	* Bob sees the `stage` transition from `In Progress` to `Completed` if the `Project` is successfully completed.
+	* Bob sees the `stage` transition from `In Progress` to `Cancelled` if the `Project` initiative fails to be completed.
 
 #### Audit Project History
 * If Alice's `Project` has ever been updated, then Bob sees the changes in a clean log of historical changes to its zone file.
