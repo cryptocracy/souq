@@ -19,7 +19,7 @@ Solve the stated problems above by giving users the ability to easily create dec
 	* [x] Description
 	* [X] Category (more coming)
 	* [X] Type (more coming)
-	* [ ] Stage (almost done)
+	* [X] Stage 
 	* [x] Payment address
 	* [x] Goal amount
 	* [x] Coordinates (latitude, longitude)
@@ -56,12 +56,12 @@ Solve the stated problems above by giving users the ability to easily create dec
 					* [x] Description
 					* [X] Category (more coming)
 					* [X] Type (more coming)
-					* [ ] Stage (almost done)
+					* [X] Stage (almost done)
 					* [ ] Image URL (currently simple, needs Gaia integration)
 					* [x] Payment Address QR Code
 					* [X] Payment Address Button
 					* [x] Goal Amount
-					* [ ] Current % Funded
+					* [X] Current % Funded Bar
 					* [x] Location on Map
 					* [x] Phone Button
 					* [x] Email Button
