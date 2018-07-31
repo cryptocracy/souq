@@ -1,13 +1,20 @@
 <ion-modal-view>
         <ion-header-bar class="header">
-          <h1 class="title">Node Settings</h1>
+          <h1 class="title">Server Settings</h1>
           <button class="button button-clear header-icon" ng-click="modal.hide()">Cancel</button>
         </ion-header-bar>
         <ion-content class="padding">
-          <div class= "list">
+          <div class="row">
+            <div class="col col-80 col-offset-10">
+              <div class="button-bar">
+                <a ng-click="switch('lite')" class="button {{liteClass}}">Lite Mode</a>
+                <a ng-click="switch('full')" class="button {{fullClass}}">Full Mode</a>
+              </div>
+            </div>
+          </div>
+          <div ng-if="lite == false" class= "list">
             <label>
               <span class="input-label"></span>
-              <!-- <ion-toggle ng-model="serverSettings.serverType" toggle-class="toggle-calm">HTTP(s) vs HTTP</ion-toggle> -->
               <ion-list>
                 <ion-radio ng-model="serverSettings.serverType" ng-value="'false'" ng-click="test(serverSettings.serverType)">HTTP(s)</ion-radio>
                 <ion-radio ng-model="serverSettings.serverType" ng-value="'true'" ng-click="test(serverSettings.serverType)">HTTP</ion-radio>
@@ -21,13 +28,24 @@
               <span class="input-label">Port</span>
               <input ng-model="serverSettings.port" type="text">
             </label>
-            <!-- <label class="item item-input">
-              <span class="input-label">Username</span>
-              <input ng-model="serverSettings.username" type="text">
-            </label> -->
             <label class="item item-input">
               <span class="input-label">Secret</span>
               <input ng-model="serverSettings.password" type="password">
+            </label>
+            <button class="button button-full" ng-click="saveServerSettings(serverSettings)">Save</button>
+          </div>
+
+          <div ng-if="lite == true" class= "list">
+            <label>
+              <span class="input-label"></span>
+              <ion-list>
+                <ion-radio ng-model="serverSettings.serverTypeLite" ng-value="'false'">HTTP(s)</ion-radio>
+                <ion-radio ng-model="serverSettings.serverTypeLite" ng-value="'true'"">HTTP</ion-radio>
+              </ion-list>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">BNS</span>
+              <input ng-model="serverSettings.publicGateway" type="text">
             </label>
             <button class="button button-full" ng-click="saveServerSettings(serverSettings)">Save</button>
           </div>

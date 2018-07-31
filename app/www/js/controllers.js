@@ -102,7 +102,7 @@ souq
               $interval.cancel($scope.interval);
               $ionicPopup.alert({
                 title: 'Error',
-                template: "Can't Connect, Please Check Settings Or Server and Try Again",
+                template: "Can't Connect, Please Check Settings Or Node and Try Again",
                 buttons: [{
                   text:'OK'
                 }]
@@ -337,7 +337,7 @@ souq
           $interval.cancel($scope.interval);
           $ionicPopup.alert({
             title: 'Error',
-            template: "Can't Connect, Please Check Settings Or Server and Try Again",
+            template: "Can't Connect, Please Check Settings Or Node and Try Again",
             buttons: [{
               text:'OK'
             }]
@@ -432,7 +432,7 @@ souq
             $interval.cancel($scope.interval);
             $ionicPopup.alert({
               title: 'Error',
-              template: "Can't Connect, Please Check Settings Or Server and Try Again",
+              template: "Can't Connect, Please Check Settings Or Node and Try Again",
               buttons: [{
                 text:'OK'
               }]
@@ -474,7 +474,7 @@ souq
       $scope.seacrhModal.show();
       $scope.type = 'Proximity';
       $scope.unit = 'm';
-      $scope.propertyData = {keyword:'', category:'Roads', type:'Donation', detail:'', phone:'', email:'', website:'', address:''}
+      $scope.propertyData = {keyword:'', category:'Roads', type:'Donation', stage: 'In Progress', detail:'', phone:'', email:'', website:'', address:''};
       $scope.proximityData = {longitude:$scope.newProject.longitude, latitude:$scope.newProject.latitude, distance:0};
       $scope.projectId = {projectId:''}
     });        
@@ -582,7 +582,7 @@ souq
         // $interval.cancel($scope.interval);
         $ionicPopup.alert({
           title: 'Error',
-          template: "Can't Connect, Please Check Settings Or Server and Try Again",
+          template: "Can't Connect, Please Check Settings Or Node and Try Again",
           buttons: [{
             text:'OK'
           }]
@@ -607,6 +607,8 @@ souq
         data.website = null;
       if (data.address == '')
         data.address = null;
+      if (data.stage == '')
+        data.stage = null;
       
       var header = {
         "alg": "HS256",
@@ -670,7 +672,7 @@ souq
         // $interval.cancel($scope.interval);
         $ionicPopup.alert({
           title: 'Error',
-          template: "Can't Connect, Please Check Settings Or Server and Try Again",
+          template: "Can't Connect, Please Check Settings Or Node and Try Again",
           buttons: [{
             text:'OK'
           }]
@@ -737,7 +739,7 @@ souq
         // $interval.cancel($scope.interval);
         $ionicPopup.alert({
           title: 'Error',
-          template: "Can't Connect, Please Check Settings Or Server and Try Again",
+          template: "Can't Connect, Please Check Settings Or Node and Try Again",
           buttons: [{
             text:'OK'
           }]
@@ -858,7 +860,7 @@ souq
         $ionicLoading.hide();
         $ionicPopup.alert({
           title: 'Error',
-          template: "Can't Connect, Please Check Settings Or Server and Try Again",
+          template: "Can't Connect, Please Check Settings Or Node and Try Again",
           buttons: [{
             text:'OK'
           }]

@@ -1,21 +1,29 @@
 <ion-view view-title="{{project.project.title}}">
+  <ion-nav-buttons side="right">
+      <button ng-if="edit == true" class="button icon button-clear ion-edit header-icon" ng-click="editProject()">
+      </button>
+  </ion-nav-buttons>
+
   <ion-content class="padding">
     <div class="list card">
         <div class="button-bar">
-			<a href="bitcoin:{{project.bitcoin.address}}" class="button button-outline item-icon-left icon ion-social-bitcoin button-bar"></a>
             <a href="{{project.contacts.website}}" class="button button-outline item-icon-left icon ion-link button-bar"></a>
             <a href="tel:{{project.contacts.phone}}" class="button button-outline item-icon-left icon ion-android-call button-bar"></a>
             <a href="mailto:{{project.contacts.email}}" class="button button-outline item-icon-left icon ion-email button-bar"></a>
         </div>
         <div class="item" style="text-align:center;">
-            <qrcode data="{{project.bitcoin.address}}" size="100"></qrcode>
-            <h2>{{project.bitcoin.address}}</h2>
-            <h3>Goal: {{project.bitcoin.goal}} BTC</h3>
+            <qrcode ng-click="openAction()" data="{{project.bitcoin.address}}" size="100"></qrcode>
+            <h2>{{project.bitcoin.address}}</h2>        
+            <h3>
+            <div><progress max="100" value="{{remain}}"></progress></div>
+				<h3 class="cryptobalance">{{balance}} BTC raised out of {{project.bitcoin.goal}} BTC</h3>
         </div>
 
+
         <div class="item item-body">
-            <p>Category: {{project.project.category}}</p>
-            {{project.project.detail}}
+            <a>{{project.project.stage}}</a>
+            <h4>Category: {{project.project.category}}</h4>
+            <p>{{project.project.detail}}</p>
         </div>
         <div class="item item-body">
             <img src="{{project.image.url}}">

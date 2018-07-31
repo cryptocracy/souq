@@ -1,6 +1,6 @@
 <ion-view view-title="Projects">
   <ion-nav-buttons side="left">
-      <button class="button icon button-clear ion-ios-plus-outline header-icon" ng-click="openProjectModal()"></button>
+      <button ng-if="mode == 'full'" class="button icon button-clear ion-ios-plus-outline header-icon" ng-click="openProjectModal()"></button>
     </ion-nav-buttons>
   <ion-nav-buttons side="right">
       <button class="button icon button-clear ion-android-list header-icon" ng-click="openSeacrhModal()">
@@ -9,16 +9,6 @@
   <ion-content class="has-header padding">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()" ng-if="type == 'Default'"></ion-refresher>
     <ion-list ng-if="type == 'Default'">
-      <!-- <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in projects" type="item-text-wrap" href="#/tab/projects/{{project.id}}">
-        <qrcode data="{{project.address}}" size="50"></qrcode>
-        <h2>{{project.title}}</h2>
-        <p>{{project.category}} : {{project.goal}} (BTC)</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(project)">
-          Delete
-        </ion-option-button>
-      </ion-item> -->
       <div align="center" style="margin-top: 20px">
         <h3>Use filters to get projects.</h3>  
       </div>

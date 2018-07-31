@@ -39,11 +39,11 @@
             <div class="input-label">
               Select Unit
             </div>
-            <select ng-model="unit" ng-change="setUnit(unit)">
-              <option>Meters</option>
-              <option>Kilometers</option>
-              <option>Feet</option>
-              <option>Miles</option>
+            <select ng-model="proximityData.unit" ng-change="setUnit(unit)">
+              <option value="m">Meters</option>
+              <option value="km">Kilometers</option>
+              <option value="ft">Feet</option>
+              <option value="mi">Miles</option>
             </select>
           </label>
 
@@ -72,6 +72,15 @@
                   <option value="Universal">Universal</option>
                   <option value="Roads">Roads</option>
                   <option value="Other">Other</option>
+              </select>
+          </label>
+
+          <label class="item item-input item-select">
+            <span class="input-label">Stage</span>
+             <select name="stage" required ng-model="propertyData.stage">
+                  <option selected="" value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
               </select>
           </label>
 

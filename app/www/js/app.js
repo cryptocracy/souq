@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
- var souq = angular.module('starter', ['ionic','ngCordova','mdo-angular-cryptography', 'monospaced.qrcode'])
+var souq = angular.module('starter', ['ionic','ngCordova','mdo-angular-cryptography', 'monospaced.qrcode'])
 
 .run(function($ionicPlatform, $rootScope, $state,$timeout, userAuth) {
 
@@ -20,7 +20,7 @@
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }    
+    } 
   });
 })
 
@@ -36,7 +36,7 @@
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -58,7 +58,6 @@
       }
     }
   })
-
   .state('user.signup', {
     url: '/signup',
     views: {
@@ -68,19 +67,16 @@
       }
     }
   })
-
   .state('tab.account', {
     url: '/account',
     cache:false,
     views: {
       'tab-account': {
-
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
       }
     }
   })
-
   .state('tab.accountProject', {
     url: '/account-project/:projectId',
     cache:false,
@@ -91,7 +87,6 @@
       }
     }
   })
-
   .state('tab.projects', {
       url: '/projects',
       cache:false,
@@ -110,18 +105,7 @@
           controller: 'ProjectDetailCtrl'
         }
       }
-    })
-
-  .state('tab.new', {
-    url: '/new',
-    cache:false,
-    views: {
-      'tab-new': {
-        templateUrl: 'templates/tab-new.html',
-        controller: 'NewCtrl'
-      }
-    }
-  });
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/user/signin');

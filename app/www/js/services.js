@@ -154,7 +154,7 @@ souq
     passwordMatchSuccess: function(){
         $ionicPopup.alert({
         title: 'Successful',
-        template: 'Successfully Sign Up!',
+        template: 'Successfully Created Lock!',
         buttons: [{
           text:'Get Started',
           onTap: function(e) {

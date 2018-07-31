@@ -5,8 +5,17 @@
   <ion-nav-buttons side="right">
     <button class="button icon button-clear ion-settings header-icon" ng-click="openModal(2)"></button>
   </ion-nav-buttons>
+  
   <ion-content class="padding">
-  <div class="card">
+
+  <div ng-if="mode == 'lite'">
+    <p>
+      Switch to Full Mode to Access All Features
+    </p>
+  </div>
+
+  <div ng-if="mode == 'full'">
+    <div class="card">
     <div class="row">
       <div class="col col-10">
         &nbsp;
@@ -31,7 +40,6 @@
        Balance: {{balance.total_balance.bitcoin}} (BTC)
     </div>
   </div>
-  
   <ion-list>
       <ion-item class="item item-divider">Owned Projects</ion-item>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="project in owned.names_owned" type="item-text-wrap" href="#/tab/account-project/{{project}}">
@@ -43,6 +51,12 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
+    <div class="row">
+    <button ng-click="reSync()" class="col button-block button">
+      Resync
+    </button>
+  </div>
+  </div>
   </ion-content>  
 
 </ion-view>
