@@ -1,3 +1,8 @@
+We have redesigned Souq for Open Beta and Production and it no longer requires the user to have their own preferred node.
+
+# Closed Beta is now over, this repo is deprecated
+
+
 [Souq](https://github.com/cryptocracy/souq) Decentralized Project Tagging & Funding
 
 ### Target group
